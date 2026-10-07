@@ -196,14 +196,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 }
 
 /* Sekilas + video */
-.about{padding-block:96px 48px}
+.about{padding-block:96px 64px}
 .about-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:24px 64px;align-items:start}
 .about h2{font-size:clamp(30px,4vw,46px);margin-top:10px}
 .about-text p{font-size:clamp(17px,1.5vw,20px);line-height:1.65;color:var(--text)}
 .about-text p+p{margin-top:18px}
 .about-text strong{color:var(--ink);font-weight:800}
 .about-text .link-arrow{margin-top:26px}
-.video{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:var(--r-lg);background:var(--ink);overflow:hidden}
+.video{position:relative;display:block;width:100%;aspect-ratio:16/9;max-height:92vh;padding:0;border:0;background:var(--ink);overflow:hidden}
 .video img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;transition:transform 1.4s var(--ease)}
 .video:hover img{transform:scale(1.04)}
 .video-play{position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:2;width:96px;height:96px;border-radius:50%;background:var(--amber-bright);color:var(--ink);display:grid;place-items:center;padding-left:5px;box-shadow:0 0 0 0 rgba(251,170,25,.55);animation:pulse 2.4s ease-out infinite;transition:scale .35s var(--ease)}
@@ -544,10 +544,8 @@ button{font:inherit;color:inherit;cursor:pointer}
     </div>
   </div>
 </section>
-<div class="wrap">
 <div class="video" id="video">
   <iframe width="1160" height="653" src="https://www.youtube.com/embed/2c9hiYGEqTg?si=OoV1lYDIQtRcDhuX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-</div>
 </div>
 
 <!-- 2. USP -->
