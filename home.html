@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>UV Corporate Beranda</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap">
@@ -181,16 +182,41 @@ button{font:inherit;color:inherit;cursor:pointer}
   .slides{grid-row:1}
   .stage{grid-column:1;grid-row:2;margin-block:32px 4px}
   .ctas{grid-row:3;margin-top:24px}
-  .hero-ctrl{grid-row:4;margin-top:28px}
+  .hero-ctrl{grid-row:4;margin-top:28px;justify-content:center}
+  .slide-cta{justify-content:center}
   .stage{aspect-ratio:1/.72;max-width:480px;width:100%;margin-inline:auto}
   .phone{width:31%}
 }
 @media (max-width:620px){
   .stats-in{grid-template-columns:1fr}
-  .stat{padding:20px 24px;border-left:0;border-top:2px dashed var(--line);display:flex;align-items:baseline;gap:14px}
+  .stat{padding:20px 24px;border-left:0;border-top:2px dashed var(--line);display:flex;align-items:center;gap:14px}
   .stat:first-child{border-top:0}
   .stat>span{margin-top:0}
   .hero-note{display:none}
+}
+
+/* Sekilas + video */
+.about{padding-block:96px 48px}
+.about-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:24px 64px;align-items:start}
+.about h2{font-size:clamp(30px,4vw,46px);margin-top:10px}
+.about-text p{font-size:clamp(17px,1.5vw,20px);line-height:1.65;color:var(--text)}
+.about-text p+p{margin-top:18px}
+.about-text strong{color:var(--ink);font-weight:800}
+.about-text .link-arrow{margin-top:26px}
+.video{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:var(--r-lg);background:var(--ink);overflow:hidden}
+.video img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;transition:transform 1.4s var(--ease)}
+.video:hover img{transform:scale(1.04)}
+.video-play{position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:2;width:96px;height:96px;border-radius:50%;background:var(--amber-bright);color:var(--ink);display:grid;place-items:center;padding-left:5px;box-shadow:0 0 0 0 rgba(251,170,25,.55);animation:pulse 2.4s ease-out infinite;transition:scale .35s var(--ease)}
+.video:hover .video-play{scale:1.12}
+@keyframes pulse{70%,100%{box-shadow:0 0 0 30px rgba(251,170,25,0)}}
+.video-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 34px 30px;font-weight:800;font-size:clamp(16px,1.7vw,21px)}
+.video iframe{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0}
+.video.playing{cursor:default}
+@media (max-width:860px){
+  .about{padding-block:64px 44px}
+  .about-grid{grid-template-columns:1fr}
+  .video-play{width:68px;height:68px}
+  .video-cap{padding:0 18px 14px}
 }
 
 /* USP: kartu melebar */
@@ -227,6 +253,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   .usp{flex:none;padding:22px 20px 22px 92px;min-height:98px}
   .usp-icon{left:20px;top:22px}
   .usp-photo,.usp-arrow{display:none}
+  .usp::before,.usp::after{display:none}
+  .usp-vert,.usp-body{position:relative}
   .usp-vert{position:static;writing-mode:horizontal-tb;transform:none;font-size:20px;white-space:normal;line-height:1.25;display:block;padding-top:14px}
   .usp-body{position:static;width:auto;display:none;transform:none}
   .usp.is-active .usp-vert{display:none}
@@ -502,6 +530,26 @@ button{font:inherit;color:inherit;cursor:pointer}
   </div>
 </div>
 
+<!-- Sekilas Ultra Voucher + video profil lebar penuh -->
+<section class="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">Tentang Perusahaan</span>
+      <h2>Sekilas Ultra Voucher</h2>
+    </div>
+    <div class="about-text">
+      <p><strong>PT Trimegah Karya Pratama Tbk (IDX: UVCR)</strong> merupakan perusahaan yang bergerak di industri teknologi dan menjadi perusahaan rewards dan loyalty Indonesia pertama yang terdaftar di Bursa Efek Indonesia (BEI).</p>
+      <p>Berdiri sejak tahun 2016, UVCR berkomitmen untuk memberikan pengalaman berbelanja yang lebih praktis dan hemat melalui ekosistem voucher, reward, dan loyalty terlengkap dan tersebar di seluruh Indonesia.</p>
+      <a class="link-arrow" href="#">Selengkapnya tentang kami <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+  </div>
+</section>
+<div class="wrap">
+<div class="video" id="video">
+  <iframe width="1160" height="653" src="https://www.youtube.com/embed/2c9hiYGEqTg?si=OoV1lYDIQtRcDhuX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+</div>
+</div>
+
 <!-- 2. USP -->
 <section class="section">
   <div class="wrap">
@@ -570,7 +618,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       <a class="cell c-gc b-big" data-rv href="https://uvgc.ultravoucher.co.id/">
         <span class="cell-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></span>
         <div class="cell-slot"><span>Slot aset · Ultra Voucher Gift Card</span><img class="slot-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6a7ad4fda8a71b3296806628.png" alt="Ultra Voucher Gift Card" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        <div class="cell-text"><img class="p-logo-img" src="https://uvgc.ultravoucher.co.id/wp-content/uploads/2026/09/6a72f916a777b4dd48714d03-1536x377.png" alt="Logo UVGC" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><span class="p-logo" hidden>Logo UVGC</span><h3>Ultra Voucher Gift Card</h3><p>Kartu fisik dan digital untuk karyawan, mitra kerja, atau orang terdekat, dan dapat dikustomisasi sesuai kebutuhan perusahaan.</p></div>
+        <div class="cell-text"><img class="p-logo-img" src="https://uvgc.ultravoucher.co.id/wp-content/uploads/2026/09/6a72f916a777b4dd48714d03-1536x377.png" referrerpolicy="no-referrer" alt="Logo UVGC" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><span class="p-logo" hidden>Logo UVGC</span><h3>Ultra Voucher Gift Card</h3><p>Kartu fisik dan digital untuk karyawan, mitra kerja, atau orang terdekat, dan dapat dikustomisasi sesuai kebutuhan perusahaan.</p></div>
       </a>
       <a class="cell c-app b-wide" data-rv href="https://onelink.to/ultravoucherapps">
         <span class="cell-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></span>
@@ -583,7 +631,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       </a>
       <a class="cell c-race b-small" data-rv href="https://b2b.ultravoucher.co.id">
         <span class="cell-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></span>
-        <div class="cell-text"><img class="p-logo-img" src="https://company.ultravoucher.co.id/assets/ubos-logo-CtNKCN29.png" alt="Logo RACE" data-scale="0.825" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><span class="p-logo" hidden>Logo RACE</span><h3>Rewards &amp; API Service</h3><p>Katalog voucher sendiri di platform perusahaan Anda.</p></div>
+        <div class="cell-text"><img class="p-logo-img" src="https://company.ultravoucher.co.id/assets/ubos-logo-CtNKCN29.png" referrerpolicy="no-referrer" alt="Logo RACE" data-scale="0.5775" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><span class="p-logo" hidden>Logo RACE</span><h3>Rewards &amp; API Service</h3><p>Katalog voucher sendiri di platform perusahaan Anda.</p></div>
       </a>
       <a class="cell c-loy b-wide" data-rv href="https://ultraloyalty.id">
         <span class="cell-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></span>
@@ -932,6 +980,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   if (!reduce && 'IntersectionObserver' in window) {
     var groups = [
       ['.sec-head .eyebrow', 'up', 0], ['.sec-head h2', 'up', 90], ['.sec-head .btn, .sec-head .chips', 'up', 180],
+      ['.about-grid > *', 'up', 0], ['.video', 'zoom', 0],
       ['#usp .usp', 'up', 0], ['.bento .cell', 'zoom', 0],
       ['.trust h2', 'up', 0], ['.trust .wrap > p', 'up', 90], ['.marquee', 'up', 120],
       ['.pin', 'zoom', 0], ['#newsTrack .news:nth-child(-n+4)', 'right', 0], ['.news-foot', 'up', 0],
