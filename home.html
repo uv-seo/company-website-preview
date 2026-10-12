@@ -229,6 +229,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .usp.u4{--c-bg:var(--ink);--c-fg:var(--on-dark);--c-sub:#cfd3cf;--c-ph:rgba(255,255,255,.08);--c-ph-bg:#2f3731}
 .usp-photo{position:absolute;right:0;top:0;bottom:0;width:var(--usp-w);background-color:var(--c-ph-bg);background-image:linear-gradient(135deg,var(--c-ph) 25%,transparent 25%,transparent 50%,var(--c-ph) 50%,var(--c-ph) 75%,transparent 75%);background-size:44px 44px;transform-origin:right center;transition:transform 1s var(--ease)}
 .usp:hover .usp-photo{transform:scale(1.04)}
+.usp-photo img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center}
+.usp-photo.has-img{background-image:none}
+.usp-photo.has-img .usp-subj,.usp-photo.has-img small{display:none}
 .usp-subj{position:absolute;right:5%;bottom:0;width:40%;height:80%;border:2px dashed var(--c-sub);border-bottom:0;border-radius:999px 999px 0 0;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:transparent;opacity:.75;transition:color .4s}
 .usp.is-active .usp-subj{color:var(--c-sub)}
 .usp-photo small{position:absolute;right:18px;top:18px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c-sub);opacity:0;transition:opacity .4s}
@@ -237,9 +240,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .usp::before{background:linear-gradient(0deg,var(--c-bg) 0%,color-mix(in srgb,var(--c-bg) 78%,transparent) 42%,transparent 82%)}
 .usp::after{background:linear-gradient(90deg,var(--c-bg) 0%,color-mix(in srgb,var(--c-bg) 82%,transparent) 36%,transparent 66%);opacity:0;transition:opacity .5s}
 .usp.is-active::after{opacity:1}
-.usp-icon,.usp-vert,.usp-body,.usp-arrow{z-index:2}
-.usp-icon{position:absolute;left:24px;top:24px;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center}
-.usp.u3 .usp-icon{background:rgba(255,255,255,.45)}
+.usp-vert,.usp-body,.usp-arrow{z-index:2}
 .usp-vert{position:absolute;left:26px;bottom:68px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:23px;font-weight:900;letter-spacing:-.01em;white-space:nowrap;transition:opacity .25s}
 .usp-arrow{position:absolute;left:28px;bottom:26px;transition:transform .3s var(--ease)}
 .usp:hover .usp-arrow{transform:translate(4px,-4px)}
@@ -250,15 +251,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 .usp.is-active .usp-body{opacity:1;visibility:visible;transform:none;transition-delay:.2s}
 @media (max-width:860px){
   .usp-row{flex-direction:column;height:auto;gap:12px}
-  .usp{flex:none;padding:22px 20px 22px 92px;min-height:98px}
-  .usp-icon{left:20px;top:22px}
+  .usp{flex:none;padding:22px 22px;min-height:0}
   .usp-photo,.usp-arrow{display:none}
   .usp::before,.usp::after{display:none}
   .usp-vert,.usp-body{position:relative}
-  .usp-vert{position:static;writing-mode:horizontal-tb;transform:none;font-size:20px;white-space:normal;line-height:1.25;display:block;padding-top:14px}
+  .usp-vert{position:static;writing-mode:horizontal-tb;transform:none;font-size:20px;white-space:normal;line-height:1.25;display:block}
   .usp-body{position:static;width:auto;display:none;transform:none}
   .usp.is-active .usp-vert{display:none}
-  .usp.is-active .usp-body{display:block;padding-top:6px}
+  .usp.is-active .usp-body{display:block}
   .usp-body h3{font-size:22px}
 }
 
@@ -451,7 +451,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     </button>
     <nav class="nav" id="nav" aria-label="Menu utama">
       <a href="https://uv-seo.github.io/company-website-preview/tentang-kami.html">Tentang Kami</a>
-      <a href="#">Layanan Pengguna</a>
+      <a href="https://uv-seo.github.io/company-website-preview/layanan-pengguna.html">Layanan Pengguna</a>
       <a href="#">Layanan Perusahaan</a>
       <a href="#">Hubungan Investor</a>
       <a href="#">Karir</a>
@@ -492,7 +492,7 @@ button{font:inherit;color:inherit;cursor:pointer}
             <a class="btn btn-amber" href="#">Lihat Layanan Perusahaan <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
           </div>
         <div class="slide-cta">
-            <a class="btn btn-amber" href="#">Lihat Layanan Pengguna <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+            <a class="btn btn-amber" href="https://uv-seo.github.io/company-website-preview/layanan-pengguna.html">Lihat Layanan Pengguna <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
             <a class="btn btn-ghost-light" href="https://ultravoucher.co.id/">Buka Web Commerce</a>
           </div>
       </div>
@@ -560,7 +560,6 @@ button{font:inherit;color:inherit;cursor:pointer}
     <div class="usp-row" id="usp" data-rv>
       <div class="usp u1 is-active" role="button" tabindex="0" aria-expanded="true">
         <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 1 · 1380 × 920</small></div>
-        <span class="usp-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.4 6.8 19.2l1-5.9L3.5 9.2l5.9-.8z"/></svg></span>
         <span class="usp-vert">Komitmen di Industri</span>
         <div class="usp-body">
           <h3>Komitmen di industri rewards dan loyalty</h3>
@@ -570,7 +569,6 @@ button{font:inherit;color:inherit;cursor:pointer}
       </div>
       <div class="usp u2" role="button" tabindex="0" aria-expanded="false">
         <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 2 · 1380 × 920</small></div>
-        <span class="usp-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6M13.5 4l-3 16"/></svg></span>
         <span class="usp-vert">Teknologi dan Inovasi</span>
         <div class="usp-body">
           <h3>Adaptasi teknologi dan inovasi</h3>
@@ -579,8 +577,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         <svg class="usp-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg>
       </div>
       <div class="usp u3" role="button" tabindex="0" aria-expanded="false">
-        <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 3 · 1380 × 920</small></div>
-        <span class="usp-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9M4 9v11h16V9M4 9h16M9 20v-6h6v6"/></svg></span>
+        <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 3 · 1380 × 920</small><img src="https://img.mailinblue.com/1873598/images/content_library/original/6acc7eceaf4ba891af398f61.jpg" alt="Lebih banyak merchant Ultra Voucher" loading="lazy" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
         <span class="usp-vert">Lebih Banyak Merchant</span>
         <div class="usp-body">
           <h3>Lebih banyak merchant</h3>
@@ -589,8 +586,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         <svg class="usp-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg>
       </div>
       <div class="usp u4" role="button" tabindex="0" aria-expanded="false">
-        <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 4 · 1380 × 920</small></div>
-        <span class="usp-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0116 0v1M4 13h3v6H5a1 1 0 01-1-1zM20 13h-3v6h2a1 1 0 001-1z"/></svg></span>
+        <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 4 · 1380 × 920</small><img src="https://img.mailinblue.com/1873598/images/content_library/original/6acc7b976fd18237745ea31c.jpg" alt="Layanan pelanggan Ultra Voucher" loading="lazy" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
         <span class="usp-vert">Layanan Pelanggan</span>
         <div class="usp-body">
           <h3>Integrasi layanan pelanggan</h3>
@@ -762,7 +758,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     <div>
       <h4>Bergabung dengan Kami</h4>
       <ul class="f-list">
-        <li><a href="#">Layanan Pengguna</a></li>
+        <li><a href="https://uv-seo.github.io/company-website-preview/layanan-pengguna.html">Layanan Pengguna</a></li>
         <li><a href="#">Layanan Perusahaan</a></li>
         <li><a href="#">Hubungi Kami</a></li>
       </ul>
