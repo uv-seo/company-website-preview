@@ -229,6 +229,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .usp.u4{--c-bg:var(--ink);--c-fg:var(--on-dark);--c-sub:#cfd3cf;--c-ph:rgba(255,255,255,.08);--c-ph-bg:#2f3731}
 .usp-photo{position:absolute;right:0;top:0;bottom:0;width:var(--usp-w);background-color:var(--c-ph-bg);background-image:linear-gradient(135deg,var(--c-ph) 25%,transparent 25%,transparent 50%,var(--c-ph) 50%,var(--c-ph) 75%,transparent 75%);background-size:44px 44px;transform-origin:right center;transition:transform 1s var(--ease)}
 .usp:hover .usp-photo{transform:scale(1.04)}
+.usp-photo img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center}
+.usp-photo.has-img{background-image:none}
+.usp-photo.has-img .usp-subj,.usp-photo.has-img small{display:none}
 .usp-subj{position:absolute;right:5%;bottom:0;width:40%;height:80%;border:2px dashed var(--c-sub);border-bottom:0;border-radius:999px 999px 0 0;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:transparent;opacity:.75;transition:color .4s}
 .usp.is-active .usp-subj{color:var(--c-sub)}
 .usp-photo small{position:absolute;right:18px;top:18px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c-sub);opacity:0;transition:opacity .4s}
@@ -237,9 +240,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .usp::before{background:linear-gradient(0deg,var(--c-bg) 0%,color-mix(in srgb,var(--c-bg) 78%,transparent) 42%,transparent 82%)}
 .usp::after{background:linear-gradient(90deg,var(--c-bg) 0%,color-mix(in srgb,var(--c-bg) 82%,transparent) 36%,transparent 66%);opacity:0;transition:opacity .5s}
 .usp.is-active::after{opacity:1}
-.usp-icon,.usp-vert,.usp-body,.usp-arrow{z-index:2}
-.usp-icon{position:absolute;left:24px;top:24px;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center}
-.usp.u3 .usp-icon{background:rgba(255,255,255,.45)}
+.usp-vert,.usp-body,.usp-arrow{z-index:2}
 .usp-vert{position:absolute;left:26px;bottom:68px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:23px;font-weight:900;letter-spacing:-.01em;white-space:nowrap;transition:opacity .25s}
 .usp-arrow{position:absolute;left:28px;bottom:26px;transition:transform .3s var(--ease)}
 .usp:hover .usp-arrow{transform:translate(4px,-4px)}
@@ -250,15 +251,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 .usp.is-active .usp-body{opacity:1;visibility:visible;transform:none;transition-delay:.2s}
 @media (max-width:860px){
   .usp-row{flex-direction:column;height:auto;gap:12px}
-  .usp{flex:none;padding:22px 20px 22px 92px;min-height:98px}
-  .usp-icon{left:20px;top:22px}
+  .usp{flex:none;padding:22px 22px;min-height:0}
   .usp-photo,.usp-arrow{display:none}
   .usp::before,.usp::after{display:none}
   .usp-vert,.usp-body{position:relative}
-  .usp-vert{position:static;writing-mode:horizontal-tb;transform:none;font-size:20px;white-space:normal;line-height:1.25;display:block;padding-top:14px}
+  .usp-vert{position:static;writing-mode:horizontal-tb;transform:none;font-size:20px;white-space:normal;line-height:1.25;display:block}
   .usp-body{position:static;width:auto;display:none;transform:none}
   .usp.is-active .usp-vert{display:none}
-  .usp.is-active .usp-body{display:block;padding-top:6px}
+  .usp.is-active .usp-body{display:block}
   .usp-body h3{font-size:22px}
 }
 
@@ -573,9 +573,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .toggle button[aria-pressed="true"]{background:var(--green);color:var(--on-dark)}
 .people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .people[hidden]{display:none}
-#boc{grid-template-columns:repeat(3,minmax(0,1fr))}
-#boc .person-body{padding:90px 20px 20px}
-#boc .person-body b{font-size:20px}
 .person{position:relative;display:block;aspect-ratio:5/6;padding:0;border:0;border-radius:var(--r-md);overflow:hidden;background:#e9efe9;text-align:left;transition:transform .45s var(--ease),box-shadow .45s}
 .person:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .person .ph{position:absolute;inset:0;background-color:#e9efe9}
@@ -669,7 +666,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     </button>
     <nav class="nav" id="nav" aria-label="Menu utama">
       <a href="tentang-kami.html" aria-current="page">Tentang Kami</a>
-      <a href="#">Layanan Pengguna</a>
+      <a href="layanan-pengguna.html">Layanan Pengguna</a>
       <a href="#">Layanan Perusahaan</a>
       <a href="#">Hubungan Investor</a>
       <a href="#">Karir</a>
@@ -884,7 +881,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     <div>
       <h4>Bergabung dengan Kami</h4>
       <ul class="f-list">
-        <li><a href="#">Layanan Pengguna</a></li>
+        <li><a href="layanan-pengguna.html">Layanan Pengguna</a></li>
         <li><a href="#">Layanan Perusahaan</a></li>
         <li><a href="#">Hubungi Kami</a></li>
       </ul>
