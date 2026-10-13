@@ -357,7 +357,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pin-stub::before,.pin-stub::after{content:"";position:absolute;left:-16px;width:30px;height:30px;border-radius:50%;background:var(--surface)}
 .pin-stub::before{top:-15px}.pin-stub::after{bottom:-15px}
 .tag{display:inline-flex;align-items:center;height:26px;padding-inline:10px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--green-pale);color:var(--green-deep);white-space:nowrap}
-.tag.promo{background:var(--amber-pale);color:var(--amber-ink)}
 .tag.pers{background:#e3e6e3;color:var(--ink)}
 .tag.pinned{background:var(--amber-bright);color:var(--ink);display:none}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
@@ -371,8 +370,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .news .cell-slot{overflow:hidden}
 .news .cell-slot>span{transition:transform .7s var(--ease)}
 .news:hover .cell-slot>span{transform:scale(1.18) translateY(-16px)}
-.news-ex{position:absolute;left:0;right:0;bottom:0;margin:0;padding:14px 16px;background:rgba(0,60,28,.95);color:var(--on-dark);font-size:13.5px;font-weight:600;line-height:1.4;letter-spacing:0;text-transform:none;text-align:left;transform:translateY(102%);transition:transform .55s var(--ease)}
-.news:hover .news-ex,.news:focus-visible .news-ex{transform:none}
 .news-go{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;background:var(--bg);color:var(--ink);display:grid;place-items:center;transform:scale(0) rotate(-60deg);transition:transform .5s var(--ease)}
 .news:hover .news-go,.news:focus-visible .news-go{transform:none}
 .track{cursor:grab}
@@ -530,7 +527,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   </div>
 </div>
 
-<!-- Sekilas Ultra Voucher + video profil lebar penuh -->
+<!-- Sekilas Ultra Voucher -->
 <section class="about">
   <div class="wrap about-grid">
     <div>
@@ -544,9 +541,6 @@ button{font:inherit;color:inherit;cursor:pointer}
     </div>
   </div>
 </section>
-<div class="video" id="video">
-  <iframe width="1160" height="653" src="https://www.youtube.com/embed/2c9hiYGEqTg?si=OoV1lYDIQtRcDhuX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-</div>
 
 <!-- 2. USP -->
 <section class="section">
@@ -559,7 +553,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     </div>
     <div class="usp-row" id="usp" data-rv>
       <div class="usp u1 is-active" role="button" tabindex="0" aria-expanded="true">
-        <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 1 · 1380 × 920</small><img src="https://img.mailinblue.com/1873598/images/content_library/original/6accb8be5e37a6b9e04b811b.jpg" alt="Komitmen di industri rewards dan loyalty" loading="lazy" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
+        <div class="usp-photo"><div class="usp-subj">Area subjek</div><small>Slot foto USP 1 · 1380 × 920</small><img src="https://img.mailinblue.com/1873598/images/content_library/original/6accbc549663d3e1b8f3e0d6.jpg" alt="Komitmen di industri rewards dan loyalty" loading="lazy" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
         <span class="usp-vert">Komitmen di Industri</span>
         <div class="usp-body">
           <h3>Komitmen di industri rewards dan loyalty</h3>
@@ -661,7 +655,6 @@ button{font:inherit;color:inherit;cursor:pointer}
       <div class="chips" id="chips" role="group" aria-label="Saring kabar">
         <button class="chip" data-f="all" aria-pressed="true">Semua</button>
         <button class="chip" data-f="artikel" aria-pressed="false">Artikel</button>
-        <button class="chip" data-f="promo" aria-pressed="false">Promo</button>
         <button class="chip" data-f="pers" aria-pressed="false">Siaran Pers</button>
       </div>
     </div>
@@ -670,37 +663,37 @@ button{font:inherit;color:inherit;cursor:pointer}
       <img class="pin-img" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/10/Health-Merchant-1-1.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true">
       <span class="pin-slot">Slot foto berita yang di-pin · 1600 × 720</span>
       <div class="pin-body">
-        <div class="tags"><span class="tag pinned">Disematkan</span><span class="tag pers">Siaran Pers</span></div>
+        <div class="tags"><span class="tag pinned">Berita Utama</span><span class="tag pers">Siaran Pers</span></div>
         <h3>Ultra Voucher Perluas Kolaborasi dengan Merchant Kesehatan</h3>
         <p>Ultra Voucher menghadirkan berbagai pilihan layanan kesehatan melalui ekosistem voucher digital.</p>
         <span class="link-arrow">Lihat selengkapnya <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
       </div>
-      <div class="pin-stub"><span>Disematkan</span></div>
+      <div class="pin-stub"><span>Berita Utama</span></div>
     </a>
 
     <div class="track" id="newsTrack">
       <a class="news" data-cat="artikel" href="https://blog.ultravoucher.co.id/voucher-hadiah-karyawan/">
-        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/voucher-hadiah-karyawan.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i><p class="news-ex">Voucher hadiah karyawan menjadi solusi mudah untuk memberikan reward dan apresiasi perusahaan.</p></div>
+        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/voucher-hadiah-karyawan.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i></div>
         <div class="news-body"><h3>Voucher Hadiah Karyawan: Reward dan Apresiasi Perusahaan</h3><div class="news-meta"><span class="tag">Artikel</span><span>24 Sep 2026</span></div></div>
       </a>
       <a class="news" data-cat="pers" href="https://blog.ultravoucher.co.id/uvgc-fisik-ultra-voucher-gift-card-belanja-offline-mall/">
-        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/UVGC-Offline-Usage.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i><p class="news-ex">UVGC fisik hadir sebagai gift card fleksibel untuk belanja offline di berbagai merchant, termasuk retail, F&amp;B, dan lifestyle.</p></div>
+        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/UVGC-Offline-Usage.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i></div>
         <div class="news-body"><h3>UVGC Fisik Ultra Voucher: Gift Card untuk Belanja Offline di Mall</h3><div class="news-meta"><span class="tag pers">Siaran Pers</span><span>Sep 2026</span></div></div>
       </a>
       <a class="news" data-cat="pers" href="https://blog.ultravoucher.co.id/ultra-voucher-penambahan-modal-tanpa-memberikan-hak-memesan-efek-terlebih-dahulu/">
-        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/Private-Placement.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i><p class="news-ex">Ultra Voucher siapkan Penambahan Modal Tanpa Memberikan Hak Memesan Efek Terlebih Dahulu hingga 200 juta saham.</p></div>
+        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/Private-Placement.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i></div>
         <div class="news-body"><h3>Ultra Voucher Siapkan Penambahan Modal hingga 200 Juta Saham</h3><div class="news-meta"><span class="tag pers">Siaran Pers</span><span>Sep 2026</span></div></div>
       </a>
-      <a class="news" data-cat="promo" href="https://blog.ultravoucher.co.id/lazada-biggest-sale-of-the-year-9-9-2026/">
-        <div class="cell-slot amber"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/Lazada_9.9_Banner-SEO.jpg.jpeg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i><p class="news-ex">Promo 9.9 Ultra Voucher di Lazada up to 20% untuk voucher HokBen, KFC, CGV, MAP, Alfamart, dan lainnya.</p></div>
-        <div class="news-body"><h3>Biggest Sale of the Year 9.9 Ultra Voucher di Lazada, up to 20%!</h3><div class="news-meta"><span class="tag promo">Promo</span><span>09 Sep 2026</span></div></div>
+      <a class="news" data-cat="artikel" href="https://blog.ultravoucher.co.id/lazada-biggest-sale-of-the-year-9-9-2026/">
+        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/Lazada_9.9_Banner-SEO.jpg.jpeg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i></div>
+        <div class="news-body"><h3>Biggest Sale of the Year 9.9 Ultra Voucher di Lazada, up to 20%!</h3><div class="news-meta"><span class="tag">Artikel</span><span>09 Sep 2026</span></div></div>
       </a>
       <a class="news" data-cat="pers" href="https://blog.ultravoucher.co.id/voucher-ultra-voucher-di-wondr-by-bni/">
-        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/IMG_0722.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i><p class="news-ex">Beli voucher Ultra Voucher di Wondr by BNI dengan mudah, dengan pilihan voucher dari ratusan brand.</p></div>
+        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/IMG_0722.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i></div>
         <div class="news-body"><h3>Belanja Ultra Voucher di Wondr by BNI, Praktis dan Hemat</h3><div class="news-meta"><span class="tag pers">Siaran Pers</span><span>Sep 2026</span></div></div>
       </a>
       <a class="news" data-cat="pers" href="https://blog.ultravoucher.co.id/voucher-digital-belanja-fleksibel-uvgc-ultra-voucher/">
-        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/UVGC-Harpelnas.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i><p class="news-ex">Voucher digital UVGC menghadirkan fleksibilitas belanja di ratusan merchant, dari F&amp;B, fashion, hiburan hingga kecantikan.</p></div>
+        <div class="cell-slot"><span>Thumbnail</span><img class="slot-img cover" src="https://blog.ultravoucher.co.id/wp-content/uploads/2026/09/UVGC-Harpelnas.jpg.webp" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"><i class="news-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M9 6h9v9"/></svg></i></div>
         <div class="news-body"><h3>Satu Voucher, Beragam Pilihan: Fleksibilitas Belanja dengan UVGC</h3><div class="news-meta"><span class="tag pers">Siaran Pers</span><span>Sep 2026</span></div></div>
       </a>
     </div>
@@ -973,7 +966,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   if (!reduce && 'IntersectionObserver' in window) {
     var groups = [
       ['.sec-head .eyebrow', 'up', 0], ['.sec-head h2', 'up', 90], ['.sec-head .btn, .sec-head .chips', 'up', 180],
-      ['.about-grid > *', 'up', 0], ['.video', 'zoom', 0],
+      ['.about-grid > *', 'up', 0],
       ['#usp .usp', 'up', 0], ['.bento .cell', 'zoom', 0],
       ['.trust h2', 'up', 0], ['.trust .wrap > p', 'up', 90], ['.marquee', 'up', 120],
       ['.pin', 'zoom', 0], ['#newsTrack .news:nth-child(-n+4)', 'right', 0], ['.news-foot', 'up', 0],
