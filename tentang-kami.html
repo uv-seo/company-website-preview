@@ -319,12 +319,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .p-logo{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;height:36px;min-width:124px;padding-inline:12px;border:1.5px dashed currentColor;border-radius:8px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;opacity:.6;margin-bottom:10px}
 .b-small .p-logo{margin-bottom:10px}
 .p-logo-img{display:block;align-self:flex-start;height:30px;width:auto;max-width:none;object-fit:contain;object-position:left center;margin-bottom:10px}
-.c-gc{grid-area:gc;--cell-bg:var(--amber-bright);--cell-fg:#3d2a00;--cell-h:var(--ink);--slot-bg:#fdc35a;--slot-fg:var(--amber-ink);--stripe:rgba(255,255,255,.22);--go-bg:var(--bg)}
-.c-app{grid-area:app}
+.c-gc{grid-area:gc;--cell-bg:var(--green-pale);--cell-fg:#2a5f38;--cell-h:var(--green-deep);--slot-bg:#b8f0d1;--slot-fg:var(--green-dark);--stripe:rgba(255,255,255,.35);--go-bg:var(--bg)}
+.c-app{grid-area:app;--slot-bg:var(--bg)}
 .c-gift{grid-area:gift}
 .c-race{grid-area:race}
-.c-loy{grid-area:loy;--slot-bg:#c4f1d8;--go-bg:var(--bg)}
-.c-food{grid-area:food}
+.c-loy{grid-area:loy;--slot-bg:var(--bg);--go-bg:var(--surface)}
+.c-food{grid-area:food;--slot-bg:var(--bg)}
 @media (max-width:980px){
   .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"gc gc" "app app" "gift race" "loy loy" "food food"}
 }
@@ -456,6 +456,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   .marquee{overflow-x:auto}
 }
 
+main{overflow-x:clip}
 /* ===== Halaman dalam: Tentang Kami ===== */
 .page-hero{position:relative;overflow:hidden;background-color:var(--green-deep);background-image:radial-gradient(60% 90% at 84% 10%,rgba(255,255,255,.09),transparent 70%);color:var(--on-dark);padding-block:150px 72px}
 .page-hero .wrap{position:relative;z-index:1}
@@ -737,7 +738,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       <a href="layanan-pengguna.html">Layanan Pengguna</a>
       <a href="layanan-perusahaan.html">Layanan Perusahaan</a>
       <a href="hubungan-investor.html">Hubungan Investor</a>
-      <a href="karier.html">Karir</a>
+      <a href="karier.html">Karier</a>
       <a href="csr.html">CSR</a>
     </nav>
   </div>
@@ -945,7 +946,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       <ul class="f-list">
         <li><a href="tentang-kami.html">Tentang Kami</a></li>
         <li><a href="hubungan-investor.html">Hubungan Investor</a></li>
-        <li><a href="karier.html">Karir</a></li>
+        <li><a href="karier.html">Karier</a></li>
         <li><a href="csr.html">CSR</a></li>
       </ul>
     </div>
