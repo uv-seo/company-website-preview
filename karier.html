@@ -799,12 +799,17 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 .cv-card h2{margin-block:10px 10px}
 .cv-card>p{color:var(--muted);font-size:16.5px;margin-bottom:26px;max-width:52ch}
 .fm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.fld{display:grid;gap:7px;min-width:0}
+.fld{display:grid;gap:7px;min-width:0;align-content:start}
 .fld.wide{grid-column:1/-1}
 .fld>span{font-size:13.5px;font-weight:800;color:var(--ink)}
 .fld input,.fld select{width:100%;height:50px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);padding:0 16px;font:inherit;font-size:15px;color:var(--ink);transition:border-color .25s,box-shadow .25s}
 .fld select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23373737' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
 .fld input:focus,.fld select:focus{outline:0;border-color:var(--green);box-shadow:0 0 0 4px rgba(0,154,70,.14)}
+.fld .req{font-style:normal;color:#d93a2b}
+.fld-err{font-size:12.5px;font-weight:700;color:#d93a2b;line-height:1.4}
+.fld input.bad,.fld select.bad{border-color:#d93a2b;box-shadow:0 0 0 4px rgba(217,58,43,.12)}
+.fm.shake{animation:shake .4s}
+@keyframes shake{20%,60%{translate:-6px 0}40%,80%{translate:6px 0}}
 .fld-hint{font-size:12.5px;color:var(--muted);font-weight:600;line-height:1.45}
 .cv-card{transition:box-shadow .5s var(--ease)}
 .cv-card.flash{box-shadow:0 0 0 3px var(--green),0 30px 60px -50px rgba(0,60,28,.6)}
@@ -990,14 +995,14 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 <!-- Kirim CV -->
 <section class="section" id="lamar">
   <div class="wrap cv">
-    <div class="cv-media" data-rv="left"><div class="ph"><span>Slot foto · 900 × 1100</span></div></div>
+    <div class="cv-media" data-rv="left"><div class="ph"><span>Slot foto · 900 × 1100</span><img class="ph-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf1e0bd41ee4ec084443e5.jpg" alt="Karier di Ultra Voucher" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div></div>
     <div class="cv-card" data-rv="right">
       <h2 class="lp-h2">Kirim lamaran Anda</h2>
       <p>Lamar posisi yang tersedia, atau kirim lamaran umum. Tim Human Capital akan menghubungi Anda jika ada posisi yang sesuai.</p>
       <form class="fm js-form" novalidate>
-        <label class="fld"><span>Nama lengkap</span><input type="text" name="nama" autocomplete="name"></label>
-        <label class="fld"><span>Email</span><input type="email" name="email" autocomplete="email"></label>
-        <label class="fld"><span>No. WhatsApp</span><input type="tel" name="wa" autocomplete="tel" placeholder="08xx xxxx xxxx"></label>
+        <label class="fld"><span>Nama lengkap <i class="req">*</i></span><input type="text" name="nama" autocomplete="name" data-req="nama" aria-required="true"></label>
+        <label class="fld"><span>Email <i class="req">*</i></span><input type="email" name="email" autocomplete="email" data-req="email" aria-required="true"></label>
+        <label class="fld"><span>No. WhatsApp <i class="req">*</i></span><input type="tel" name="wa" autocomplete="tel" inputmode="tel" placeholder="08xx xxxx xxxx" data-req="wa" aria-required="true"></label>
         <label class="fld"><span>Bidang yang diminati</span><select name="bidang" id="fBid"><option>Operation</option><option>Business</option><option>Support</option></select></label>
         <label class="fld"><span>Posisi yang diinginkan</span><input type="text" name="posisi" id="fPos" placeholder="Contoh: Backend Engineer"></label>
         <label class="fld"><span>Link LinkedIn (opsional)</span><input type="url" name="linkedin" placeholder="linkedin.com/in/nama-anda"></label>
@@ -1142,8 +1147,27 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   // Form mockup
   var OK = '<svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
   [].forEach.call(document.querySelectorAll('.js-form'), function(f){
+    var MSG = { nama: 'Nama lengkap wajib diisi.', email: 'Masukkan alamat email yang valid.', wa: 'Masukkan nomor WhatsApp yang valid, contoh 0812 3456 7890.' };
+    function check(inp){
+      var v = inp.value.trim(), k = inp.dataset.req, ok = true;
+      if (k === 'nama') ok = v.length >= 2;
+      if (k === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      if (k === 'wa') { var d = v.replace(/[\s\-().]/g, ''); ok = /^(\+?62|0)8\d{7,12}$/.test(d); }
+      var lab = inp.closest('.fld'), err = lab.querySelector('.fld-err');
+      inp.classList.toggle('bad', !ok); inp.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      if (!ok && !err) { err = document.createElement('small'); err.className = 'fld-err'; err.setAttribute('role', 'alert'); lab.appendChild(err); }
+      if (err) { if (ok) err.remove(); else err.textContent = v ? MSG[k] : (k === 'nama' ? MSG.nama : (k === 'email' ? 'Email wajib diisi.' : 'No. WhatsApp wajib diisi.')); }
+      return ok;
+    }
+    var reqs = [].slice.call(f.querySelectorAll('[data-req]'));
+    reqs.forEach(function(inp){
+      inp.addEventListener('blur', function(){ if (inp.value.trim() || inp.classList.contains('bad')) check(inp); });
+      inp.addEventListener('input', function(){ if (inp.classList.contains('bad')) check(inp); });
+    });
     f.addEventListener('submit', function(e){
       e.preventDefault();
+      var bad = reqs.filter(function(inp){ return !check(inp); });
+      if (bad.length) { bad[0].focus(); f.classList.remove('shake'); void f.offsetWidth; if (!reduce) f.classList.add('shake'); return; }
       var done = document.createElement('div');
       done.className = 'fm-done';
       done.innerHTML = '<i>' + OK + '</i><h4>Terima kasih!</h4><p>Lamaran Anda sudah kami terima. Tim Human Capital akan menghubungi Anda jika ada posisi yang sesuai.</p><button type="button">Kirim lamaran lain</button>';
