@@ -535,7 +535,12 @@ main{overflow-x:clip}
 .stock-price small{font-size:.2em;font-weight:800;letter-spacing:.08em;color:var(--amber-ink);margin-left:8px}
 .stock-head{display:grid;gap:3px}
 .stock-head b{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.2}
-.stock-mid{flex:1;display:flex;align-items:center}
+.stock-mid{flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px}
+.stock-chg{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;background:rgba(255,255,255,.55);color:var(--ink)}
+.stock-chg.up{color:#00733a}.stock-chg.down{color:#c62f22}
+.stock-chg.up::before{content:"\25B2";font-size:10px}.stock-chg.down::before{content:"\25BC";font-size:10px}
+#stkPrice.flash{animation:stkflash 1s}
+@keyframes stkflash{30%{color:var(--green-deep)}}
 .stock-foot{position:relative;display:grid;gap:12px;border-top:2px dashed rgba(60,40,0,.32);padding-top:16px}
 .stock-foot::before,.stock-foot::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--surface)}
 .stock-foot::before{left:-37px}.stock-foot::after{right:-37px}
@@ -787,9 +792,9 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
           </div>
           <div class="stock" aria-label="Harga saham UVCR">
             <div class="stock-head"><b>Harga Saham</b><span class="stock-tk">IDX - UVCR</span></div>
-            <div class="stock-mid"><span class="stock-price">286<small>IDR</small></span></div>
+            <div class="stock-mid"><span class="stock-price"><span id="stkPrice">286</span><small>IDR</small></span><span class="stock-chg" id="stkChg" hidden></span></div>
             <div class="stock-foot">
-              <div class="stock-meta"><span>Pembaruan terakhir</span><b>07/10/2026 10:42:04 WIB</b></div>
+              <div class="stock-meta"><span>Pembaruan terakhir</span><b id="stkTime">07/10/2026 10:42:04 WIB</b></div>
             </div>
           </div>
           <div class="ph rk-photo"><span>Slot foto kantor atau tim · 640 × 520</span><img class="ph-img" src="https://play-lh.googleusercontent.com/xpjLIijHjgsOremD9tTEmk6VF73R-4nrt8y4UCSLysdKIQed2RboRMu-ythlXQdddwujjlR5K78Sk0-cwboARw" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
@@ -1046,6 +1051,30 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 
   // Angka menghitung naik saat Ringkasan tampil
   var fmt = new Intl.NumberFormat('id-ID');
+
+  // Harga saham dari Google Sheet (GOOGLEFINANCE) yang dipublikasikan sebagai CSV
+  var STOCK_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7kXveChljIiYueNpzddtnpiFd8V5htkbV6HYBxB4tG1iJkbmP-Inh11Uwathdi7aNiF3ZGhHALjjA/pub?gid=0&single=true&output=csv';
+  function num(v){ v = String(v || '').replace(/[^\d,.\-]/g, ''); if (/,\d{1,2}$/.test(v)) v = v.replace(/\./g, '').replace(',', '.'); else v = v.replace(/,/g, ''); return parseFloat(v); }
+  function loadStock(){
+    if (!STOCK_CSV) return;
+    fetch(STOCK_CSV + (STOCK_CSV.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' })
+      .then(function(r){ if (!r.ok) throw 0; return r.text(); })
+      .then(function(t){
+        var row = (t.trim().split(/\r?\n/)[1] || '').match(/("([^"]|"")*"|[^,]*)(,|$)/g).map(function(c){ return c.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim(); });
+        var price = num(row[0]), chg = num(row[1]), pct = num(row[2]), when = row[3];
+        if (!isFinite(price) || price <= 0) return;
+        var pe = document.getElementById('stkPrice'), old = pe.textContent, nf = new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 });
+        pe.textContent = nf.format(price); if (old !== pe.textContent) { pe.classList.remove('flash'); void pe.offsetWidth; pe.classList.add('flash'); }
+        var ce = document.getElementById('stkChg');
+        if (isFinite(chg) && isFinite(pct)) {
+          ce.textContent = (chg > 0 ? '+' : '') + nf.format(chg) + ' (' + (pct > 0 ? '+' : '') + nf.format(pct) + '%)';
+          ce.className = 'stock-chg' + (chg > 0 ? ' up' : chg < 0 ? ' down' : ''); ce.hidden = false;
+        }
+        if (when) document.getElementById('stkTime').textContent = when + (/WIB/.test(when) ? '' : ' WIB');
+      })
+      .catch(function(){ /* tetap tampilkan angka terakhir */ });
+  }
+  loadStock(); setInterval(function(){ if (!document.hidden) loadStock(); }, 5 * 60 * 1000);
   function runCount(el){
     var end = Number(el.dataset.count), t0 = null;
     (function step(ts){ ts = ts || performance.now(); if (t0 === null) t0 = ts; var q = Math.min(1, (ts - t0) / 1600), e = 1 - Math.pow(1 - q, 3);
