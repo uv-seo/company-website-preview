@@ -1052,16 +1052,26 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   // Angka menghitung naik saat Ringkasan tampil
   var fmt = new Intl.NumberFormat('id-ID');
 
-  // Harga saham dari Google Sheet (GOOGLEFINANCE) yang dipublikasikan sebagai CSV
-  var STOCK_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7kXveChljIiYueNpzddtnpiFd8V5htkbV6HYBxB4tG1iJkbmP-Inh11Uwathdi7aNiF3ZGhHALjjA/pub?gid=0&single=true&output=csv';
-  function num(v){ v = String(v || '').replace(/[^\d,.\-]/g, ''); if (/,\d{1,2}$/.test(v)) v = v.replace(/\./g, '').replace(',', '.'); else v = v.replace(/,/g, ''); return parseFloat(v); }
+  // Harga saham dari stock.json (diperbarui GitHub Actions tiap 15 menit di jam bursa)
+  var STOCK_SRC = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdU6URx18-ajEd1AUwh8wY4QLjZafjh8FQ8jqfe99SxCMVhM-OkhMwDd0sqUejWuM1dfatBNF1-YIR/pub?gid=0&single=true&output=csv';
   function loadStock(){
-    if (!STOCK_CSV) return;
-    fetch(STOCK_CSV + (STOCK_CSV.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' })
+    if (!STOCK_SRC || !window.fetch) return;
+    fetch(STOCK_SRC + '?t=' + Date.now(), { cache: 'no-store' })
       .then(function(r){ if (!r.ok) throw 0; return r.text(); })
       .then(function(t){
-        var row = (t.trim().split(/\r?\n/)[1] || '').match(/("([^"]|"")*"|[^,]*)(,|$)/g).map(function(c){ return c.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim(); });
-        var price = num(row[0]), chg = num(row[1]), pct = num(row[2]), when = row[3];
+        var d;
+        if (/^\s*\{/.test(t)) d = JSON.parse(t);
+        else {
+          // CSV: cari baris judul (berisi "price"), kolom dibaca berdasarkan nama judul
+          var rows = t.trim().split(/\r?\n/).map(function(line){ return (line.match(/("([^"]|"")*"|[^,]*)(,|$)/g) || []).map(function(c){ return c.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim(); }); });
+          var h = -1; rows.some(function(r, i){ if (r.map(function(x){ return x.toLowerCase(); }).indexOf('price') > -1) { h = i; return true; } });
+          if (h < 0 || !rows[h + 1]) return;
+          var head = rows[h].map(function(x){ return x.toLowerCase(); }), val = rows[h + 1], col = function(k){ var i = head.indexOf(k); return i > -1 ? val[i] : ''; };
+          var n = function(v){ v = String(v || '').replace(/[^\d,.\-]/g, ''); if (/,\d{1,2}$/.test(v)) v = v.replace(/\./g, '').replace(',', '.'); else v = v.replace(/,/g, ''); return v === '' ? null : parseFloat(v); };
+          d = { price: n(col('price')), change: n(col('change')), changepct: n(col('changepct')), time: col('waktu') || col('time') };
+          if (d.time && !/WIB/.test(d.time)) d.time += ' WIB';
+        }
+        var price = Number(d.price), chg = d.change == null ? NaN : Number(d.change), pct = d.changepct == null ? NaN : Number(d.changepct);
         if (!isFinite(price) || price <= 0) return;
         var pe = document.getElementById('stkPrice'), old = pe.textContent, nf = new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 });
         pe.textContent = nf.format(price); if (old !== pe.textContent) { pe.classList.remove('flash'); void pe.offsetWidth; pe.classList.add('flash'); }
@@ -1070,7 +1080,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
           ce.textContent = (chg > 0 ? '+' : '') + nf.format(chg) + ' (' + (pct > 0 ? '+' : '') + nf.format(pct) + '%)';
           ce.className = 'stock-chg' + (chg > 0 ? ' up' : chg < 0 ? ' down' : ''); ce.hidden = false;
         }
-        if (when) document.getElementById('stkTime').textContent = when + (/WIB/.test(when) ? '' : ' WIB');
+        if (d.time) document.getElementById('stkTime').textContent = d.time;
       })
       .catch(function(){ /* tetap tampilkan angka terakhir */ });
   }
