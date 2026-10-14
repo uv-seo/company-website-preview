@@ -526,6 +526,13 @@ main{overflow-x:clip}
 .stock:hover{transform:translateY(-5px);box-shadow:0 34px 50px -26px rgba(236,153,4,.95)}
 .stock::after{content:"";position:absolute;right:-80px;bottom:-90px;width:240px;height:240px;border-radius:50%;border:34px solid rgba(255,255,255,.3)}
 .stock>*{position:relative;z-index:1}
+.stock .stock-spark{position:absolute;z-index:0;left:0;right:0;bottom:96px;height:38%;width:100%;opacity:0;transition:opacity .8s}
+.stock.has-spark .stock-spark{opacity:1}
+.stock.has-spark::after{display:none}
+.stock-spark .area{fill:url(#stkGrad)}
+.stock-spark .line{fill:none;stroke:rgba(60,40,0,.36);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.stock-spark .grid{stroke:rgba(60,40,0,.12);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:3 4}
+.stock .stock-range{position:absolute;z-index:1;right:22px;bottom:104px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(60,40,0,.55)}
 .stock-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
 .stock-tk{font-size:13.5px;font-weight:900;letter-spacing:.1em;color:var(--green-deep)}
 .stock-chip{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:rgba(255,255,255,.6);padding:4px 11px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
@@ -718,8 +725,9 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .gov,.awards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ph-grid{grid-template-columns:1fr}
   .hero-ph{display:none}
-  .rk-text,.rk-photo,.rk .stock,.rk .facts{grid-column:1/-1}
-  .rk-photo{min-height:200px}
+  .rk-text,.rk .stock{grid-column:1/-1}
+  .rk-photo{grid-column:span 2;min-height:0;aspect-ratio:1/1;align-self:center}
+  .rk .facts{grid-column:span 4}
   .tl{padding-left:34px;gap:26px}
   .tl::before,.tl-fill{left:9px}
   .tl-item{grid-template-columns:1fr;gap:12px}
@@ -727,6 +735,10 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .tl-item:nth-of-type(even) .tl-card{order:0}
 }
 @media (max-width:620px){
+  .stock .stock-range{display:none}
+  .stock .stock-spark{height:52%}
+  .rk-photo,.rk .facts{grid-column:1/-1}
+  .rk-photo{width:100%;aspect-ratio:1/1}
   .page-hero{padding-block:128px 52px}
   .page-body{padding-block:28px 72px}
   .card{padding:22px}
@@ -790,14 +802,14 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
             <p>Berdiri sejak tahun 2016, UVCR berkomitmen untuk memberikan pengalaman berbelanja yang lebih praktis dan hemat melalui ekosistem voucher, reward, dan loyalty terlengkap dan tersebar di seluruh Indonesia.</p>
             <p>Lewat aplikasi Ultra Voucher dan web ultravoucher.co.id, konsumen dapat membeli, menukar, memberi, dan mengelola voucher dengan mudah. Untuk klien korporat, kami menghadirkan Ultra Gift, Ultra Voucher Gift Card (UVGC), dan Rewards &amp; API Services (RACE) yang dapat terhubung langsung ke aplikasi dan website perusahaan.</p>
           </div>
-          <div class="stock" aria-label="Harga saham UVCR">
+          <div class="stock" aria-label="Harga saham UVCR"><svg class="stock-spark" id="stkSpark" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"></svg><span class="stock-range" id="stkRange" hidden></span>
             <div class="stock-head"><b>Harga Saham</b><span class="stock-tk">IDX - UVCR</span></div>
             <div class="stock-mid"><span class="stock-price"><span id="stkPrice">286</span><small>IDR</small></span><span class="stock-chg" id="stkChg" hidden></span></div>
             <div class="stock-foot">
               <div class="stock-meta"><span>Pembaruan terakhir</span><b id="stkTime">07/10/2026 10:42:04 WIB</b></div>
             </div>
           </div>
-          <div class="ph rk-photo"><span>Slot foto kantor atau tim · 640 × 520</span><img class="ph-img" src="https://play-lh.googleusercontent.com/xpjLIijHjgsOremD9tTEmk6VF73R-4nrt8y4UCSLysdKIQed2RboRMu-ythlXQdddwujjlR5K78Sk0-cwboARw" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
+          <div class="ph rk-photo"><span>Slot foto kantor atau tim · 640 × 640</span><img class="ph-img" src="https://play-lh.googleusercontent.com/xpjLIijHjgsOremD9tTEmk6VF73R-4nrt8y4UCSLysdKIQed2RboRMu-ythlXQdddwujjlR5K78Sk0-cwboARw" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
           <div class="facts">
             <div class="fact"><b>2016</b><span>tahun berdiri</span></div>
             <div class="fact"><b>2021</b><span>tercatat di BEI</span></div>
@@ -1054,6 +1066,17 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 
   // Harga saham dari stock.json (diperbarui GitHub Actions tiap 15 menit di jam bursa)
   var STOCK_SRC = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdU6URx18-ajEd1AUwh8wY4QLjZafjh8FQ8jqfe99SxCMVhM-OkhMwDd0sqUejWuM1dfatBNF1-YIR/pub?gid=0&single=true&output=csv';
+  function drawSpark(v){
+    var svg = document.getElementById('stkSpark'); if (!svg || !v || v.length < 3) return;
+    var mn = Math.min.apply(null, v), mx = Math.max.apply(null, v), rg = (mx - mn) || 1;
+    var pts = v.map(function(y, i){ return [(i / (v.length - 1) * 100).toFixed(2), (36 - (y - mn) / rg * 30).toFixed(2)]; });
+    var line = 'M' + pts.map(function(p){ return p.join(' '); }).join('L');
+    svg.innerHTML = '<defs><linearGradient id="stkGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>'
+      + '<line class="grid" x1="0" x2="100" y1="6" y2="6"/><line class="grid" x1="0" x2="100" y1="21" y2="21"/><line class="grid" x1="0" x2="100" y1="36" y2="36"/>'
+      + '<path class="area" d="' + line + 'L100 40L0 40Z"/><path class="line" d="' + line + '"/>';
+    svg.closest('.stock').classList.add('has-spark');
+    var r = document.getElementById('stkRange'); r.textContent = v.length + ' hari bursa terakhir'; r.hidden = false;
+  }
   function loadStock(){
     if (!STOCK_SRC || !window.fetch) return;
     fetch(STOCK_SRC + (STOCK_SRC.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' })
@@ -1069,6 +1092,8 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
           var head = rows[h].map(function(x){ return x.toLowerCase(); }), val = rows[h + 1], col = function(k){ var i = head.indexOf(k); return i > -1 ? val[i] : ''; };
           var n = function(v){ v = String(v || '').replace(/[^\d,.\-]/g, ''); if (/,\d{1,2}$/.test(v)) v = v.replace(/\./g, '').replace(',', '.'); else v = v.replace(/,/g, ''); return v === '' ? null : parseFloat(v); };
           d = { price: n(col('price')), change: n(col('change')), changepct: n(col('changepct')), time: col('waktu') || col('time') };
+          var ci = head.indexOf('close');
+          if (ci > -1) d.history = rows.slice(h + 1).map(function(r){ return n(r[ci]); }).filter(function(v){ return v != null && isFinite(v) && v > 0; });
           if (d.time && !/WIB/.test(d.time)) d.time += ' WIB';
         }
         var price = Number(d.price), chg = d.change == null ? NaN : Number(d.change), pct = d.changepct == null ? NaN : Number(d.changepct);
@@ -1081,6 +1106,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
           ce.className = 'stock-chg' + (chg > 0 ? ' up' : chg < 0 ? ' down' : ''); ce.hidden = false;
         }
         if (d.time) document.getElementById('stkTime').textContent = d.time;
+        drawSpark(d.history);
       })
       .catch(function(){ /* tetap tampilkan angka terakhir */ });
   }
