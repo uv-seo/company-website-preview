@@ -509,6 +509,8 @@ main{overflow-x:clip}
 .rk-photo{grid-column:span 2;border-radius:var(--r-md);min-height:200px}
 .rk-photo:hover .ph-img{transform:scale(1.05)}
 .rk .facts{grid-column:span 4}
+.rk-video{grid-column:1/-1;position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:var(--ink);box-shadow:0 30px 50px -36px rgba(0,60,28,.6)}
+.rk-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .card h3{font-size:22px;font-weight:800;margin-bottom:12px}
 .lead p{font-size:clamp(16.5px,1.4vw,18.5px);line-height:1.7}
 .lead p+p{margin-top:16px}
@@ -745,6 +747,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 .badges a:hover{transform:translateY(-3px);opacity:.85}
 .badges img{display:block;height:48px;width:auto}
 .badges span{display:flex;align-items:center;height:48px;padding-inline:18px;border-radius:10px;background:var(--ink);color:var(--on-dark);font-weight:800}
+.lp-visual img{display:block;width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(0,60,28,.25))}
 .vid-frame{position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:var(--ink);box-shadow:0 40px 70px -40px rgba(0,60,28,.7);transition:transform .5s var(--ease),box-shadow .5s}
 .vid-frame:hover{transform:translateY(-6px);box-shadow:0 50px 80px -40px rgba(0,60,28,.8)}
 .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -874,9 +877,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
         </div>
       </div>
     </div>
-    <div class="vid-frame" data-rv="zoom">
-      <iframe width="640" height="360" src="https://www.youtube.com/embed/2c9hiYGEqTg?si=OoV1lYDIQtRcDhuX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-    </div>
+    <div class="lp-visual" data-rv="zoom"><img src="https://uvgc.ultravoucher.co.id/wp-content/uploads/2026/09/6a8e86463c3ca37499231c45.webp" alt="Aplikasi dan web commerce Ultra Voucher" loading="lazy" onerror="this.parentNode.hidden=true"></div>
   </div>
 </section>
 
