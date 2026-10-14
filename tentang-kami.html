@@ -1075,7 +1075,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       + '<line class="grid" x1="0" x2="100" y1="6" y2="6"/><line class="grid" x1="0" x2="100" y1="21" y2="21"/><line class="grid" x1="0" x2="100" y1="36" y2="36"/>'
       + '<path class="area" d="' + line + 'L100 40L0 40Z"/><path class="line" d="' + line + '"/>';
     svg.closest('.stock').classList.add('has-spark');
-    var r = document.getElementById('stkRange'); r.textContent = v.length + ' hari bursa terakhir'; r.hidden = false;
+    var r = document.getElementById('stkRange'); r.textContent = '1 bulan terakhir'; r.hidden = false;
   }
   function loadStock(){
     if (!STOCK_SRC || !window.fetch) return;
