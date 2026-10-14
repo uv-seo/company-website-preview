@@ -743,31 +743,34 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 .feat{background:radial-gradient(70% 60% at 50% 45%,var(--green-pale),transparent 70%),var(--surface)}
 .feat .sec-head{justify-content:center;text-align:center}
 .feat .sec-head h2{max-width:none}
-.feat-grid{display:grid;grid-template-columns:minmax(0,1fr) 290px minmax(0,1fr);gap:44px;align-items:center}
+.feat-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 290px minmax(0,1fr);gap:44px;align-items:center}
+.flines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:3}
+.flines .stub{fill:none;stroke:#a9cfb7;stroke-width:2;stroke-dasharray:5 5}
+.flines .halo{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.flines .ln{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.flines .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:fdraw .7s var(--ease) forwards}
+@keyframes fdraw{to{stroke-dashoffset:0}}
+.fring{position:absolute;z-index:2;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:3px solid var(--green);background:rgba(0,154,70,.12);box-shadow:0 0 0 3px #fff;pointer-events:none;opacity:0;transition:left .55s var(--ease),top .55s var(--ease),opacity .3s}
+.fring.on{opacity:1}
+.fcar{display:none}
+.fring::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--green);animation:fping 1.6s ease-out infinite}
+@keyframes fping{from{scale:1;opacity:.8}to{scale:1.9;opacity:0}}
 .feat-col{display:grid;gap:12px}
 .feat-item{position:relative;display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:20px;border:1.5px solid transparent;background:transparent;cursor:pointer;transition:background .45s,border-color .45s,transform .5s var(--ease),box-shadow .45s}
 .feat-col.l .feat-item{flex-direction:row-reverse;text-align:right}
 .feat-item b{display:block;font-size:16.5px;font-weight:800;line-height:1.3;color:var(--ink)}
 .feat-item small{display:block;margin-top:3px;font-size:12.5px;font-weight:600;line-height:1.4;color:var(--muted)}
 .feat-ico{flex:none;width:52px;height:52px;border-radius:50%;background:var(--bg);color:var(--green-dark);display:grid;place-items:center;box-shadow:0 8px 18px -12px rgba(0,60,28,.5);transition:background .45s,color .45s,scale .5s var(--ease)}
-.feat-item::after{content:"";position:absolute;top:50%;width:30px;border-top:2px dashed #a9cfb7;transition:border-color .4s,width .5s var(--ease)}
-.feat-col.l .feat-item::after{right:-38px}
-.feat-col.r .feat-item::after{left:-38px}
 .feat-item.is-on{background:var(--bg);border-color:var(--green);box-shadow:var(--shadow)}
 .feat-col.l .feat-item.is-on{transform:translateX(10px)}
 .feat-col.r .feat-item.is-on{transform:translateX(-10px)}
 .feat-item.is-on .feat-ico{background:var(--green);color:var(--on-dark);scale:1.1}
-.feat-item.is-on::after{border-color:var(--green);border-top-style:solid}
 .fphone-wrap{position:relative}
 .fphone-wrap::before{content:"";position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:2px dashed rgba(0,154,70,.28);animation:spin 60s linear infinite}
 @keyframes spin{to{rotate:360deg}}
-.fphone{position:relative;aspect-ratio:9/18.6;border-radius:44px;background:var(--ink);padding:10px;box-shadow:0 60px 80px -44px rgba(0,60,28,.75);animation:bob 7s ease-in-out infinite}
+.fphone{position:relative;aspect-ratio:9/18.6;border-radius:44px;background:var(--ink);padding:10px;box-shadow:0 60px 80px -44px rgba(0,60,28,.75)}
 .fphone-scr{position:relative;height:100%;border-radius:34px;overflow:hidden}
 .fphone-scr .ph{height:100%}
-.fphone-cap{position:absolute;left:12px;right:12px;bottom:14px;z-index:2;display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:18px;padding:10px 12px;box-shadow:0 14px 30px -14px rgba(0,0,0,.45);font-size:13px;font-weight:800;line-height:1.25;color:var(--ink);text-transform:none;letter-spacing:0;text-align:left}
-.fphone-cap i{flex:none;width:36px;height:36px;border-radius:50%;background:var(--green);color:var(--on-dark);display:grid;place-items:center}
-.fphone-cap i svg{width:18px;height:18px}
-.fphone-cap.swap{animation:capin .5s var(--ease)}
 @keyframes capin{from{opacity:0;transform:translateY(14px)}}
 /* keunggulan */
 .kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
@@ -797,9 +800,19 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 @media (max-width:980px){
   .lp-app,.wc{grid-template-columns:minmax(0,1fr);gap:32px}
   .feat-grid{grid-template-columns:minmax(0,1fr);gap:28px}
-  .fphone-wrap{order:-1;width:230px;margin-inline:auto}
+  .fphone-wrap{order:-1;width:220px;margin-inline:auto}
+  .feat-col:empty{display:none}
+  .fcar{display:block;order:-1;min-width:0;margin-top:-4px}
+  .fcar-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 8% 10px;margin-inline:-16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .fcar-track::-webkit-scrollbar{display:none}
+  .fcar .feat-item{flex:0 0 84%;scroll-snap-align:center;flex-direction:row;text-align:left;min-height:96px;transform:none!important;transition:background .35s,border-color .35s,box-shadow .35s,opacity .35s}
+  .fcar .feat-item:not(.is-on){opacity:.55}
+  .fcar-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:10px}
+  .fcar .round-btn{width:42px;height:42px;background:var(--bg);border-color:var(--line);color:var(--ink)}
+  .fcar-count{min-width:56px;text-align:center;font-size:14px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
   .feat-col.l .feat-item{flex-direction:row;text-align:left}
-  .feat-item::after{display:none}
+  .flines{display:none}
+  .fring{width:26px;height:26px;margin:-13px 0 0 -13px}
   .feat-col.l .feat-item.is-on,.feat-col.r .feat-item.is-on{transform:none}
   .feat-item{background:var(--bg)}
   .kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -863,14 +876,19 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   <div class="wrap">
     <div class="sec-head"><div data-rv="up"><h2>Semua kebutuhan voucher dalam satu aplikasi</h2></div></div>
     <div class="feat-grid" id="feat">
-      <div class="feat-col l"><div class="feat-item" role="button" tabindex="0" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.600 5.400 5.900.800-4.300 4.100 1 5.900L12 16.400 6.800 19.200l1-5.900L3.500 9.200l5.900-.800z"/></svg></span><span><b>More Shopping &amp; More Points by Ultra Loyalty</b></span></div><div class="feat-item" role="button" tabindex="0" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.200 7-11.500A7 7 0 005 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg></span><span><b>Nearby Merchant Redemption and 13 Category Shopping Vouchers</b></span></div><div class="feat-item" role="button" tabindex="0" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 000-4V8zM14 6v12" stroke-dasharray="0"/></svg></span><span><b>Easy Voucher Redemption</b></span></div><div class="feat-item" role="button" tabindex="0" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.500" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><span><b>Multi Payment Channel</b><small>Bank Virtual Account, Bank Transfer, Credit Card, External PayLater, E-Wallet</small></span></div><div class="feat-item" role="button" tabindex="0" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-1.500-3.500-6-3-5 0M12 7c1.500-3.500 6-3 5 0"/></svg></span><span><b>Share Voucher To Anyone</b></span></div></div>
+      <svg class="flines" id="fLines" aria-hidden="true"></svg>
+      <div class="feat-col l"><div class="feat-item" role="button" tabindex="0" data-tx="0.109" data-ty="0.4" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 012-2h11v4M4 7v10a2 2 0 002 2h13a1 1 0 001-1v-8a1 1 0 00-1-1H6a2 2 0 01-2-2zM16.500 14h.010"/></svg></span><span><b>Ultra Value</b><small>Saldo digital untuk belanja voucher</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.189" data-ty="0.604" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14.5" r="5.5"/><path d="M8.5 10.2L6 3h4l2 5M15.5 10.2L18 3h-4l-2 5M12 12.3l.8 1.5 1.6.2-1.2 1.1.3 1.6-1.5-.8-1.5.8.3-1.6-1.2-1.1 1.6-.2z"/></svg></span><span><b>Tier member</b><small>Silver, Gold, Diamond, dan Platinum, sesuai jumlah transaksi per bulan</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.219" data-ty="0.793" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M21 19H3"/></svg></span><span><b>Smart Saver</b><small>Pantau pengeluaran dan penghematan Anda</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.117" data-ty="0.985" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-1.500-3.500-6-3-5 0M12 7c1.500-3.500 6-3 5 0"/></svg></span><span><b>Bagikan voucher</b><small>Kirim voucher sebagai hadiah ke sesama user</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.124" data-ty="1.887" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.200 7-11.500A7 7 0 005 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg></span><span><b>13 kategori voucher</b><small>Pilihan voucher untuk belanja lebih hemat</small></span></div></div>
       <div class="fphone-wrap" data-rv="zoom">
         <div class="fphone"><div class="fphone-scr">
-          <div class="ph"><span>Slot layar aplikasi · 540 × 1170</span></div>
-          <div class="fphone-cap" id="featCap"><i></i><span></span></div>
+          <div class="ph"><span>Slot layar aplikasi · 540 × 1170</span><img class="ph-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf1d6ee58328a2827347f8.jpg" alt="Tampilan aplikasi Ultra Voucher" style="object-position:center top" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
+          <i class="fring" id="fRing" aria-hidden="true"></i>
         </div></div>
       </div>
-      <div class="feat-col r"><div class="feat-item" role="button" tabindex="0" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M8 8h3v3H8zM13 13h3v3h-3zM13 8h3M8 13v3"/></svg></span><span><b>Scan UV Gift Card</b></span></div><div class="feat-item" role="button" tabindex="0" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a2 2 0 004 0V3M8 10v11M16 3c-1.700 1.500-2.500 4-2.500 7H17V3zM17 10v11"/></svg></span><span><b>Ultra Food Delivery</b></span></div><div class="feat-item" role="button" tabindex="0" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 012-2h11v4M4 7v10a2 2 0 002 2h13a1 1 0 001-1v-8a1 1 0 00-1-1H6a2 2 0 01-2-2zM16.500 14h.010"/></svg></span><span><b>Ultra Value as Your Digital Voucher Value</b></span></div><div class="feat-item" role="button" tabindex="0" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M21 19H3"/></svg></span><span><b>Monitoring your Spending with Smart Saving Features</b></span></div><div class="feat-item" role="button" tabindex="0" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-2.500-1.800L12 21l-2.500-1.800L7 21V3zM10 8h4M10 12h4"/></svg></span><span><b>My Voucher &amp; Shopping History</b></span></div></div>
+      <div class="fcar" id="fCar" aria-roledescription="carousel" aria-label="Fitur aplikasi">
+        <div class="fcar-track" id="fTrack"></div>
+        <div class="fcar-nav"><button class="round-btn" type="button" id="fPrev" aria-label="Fitur sebelumnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><span class="fcar-count" id="fCount" aria-live="polite">1 / 10</span><button class="round-btn" type="button" id="fNext" aria-label="Fitur berikutnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      </div>
+      <div class="feat-col r"><div class="feat-item" role="button" tabindex="0" data-tx="0.67" data-ty="0.402" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M8 8h3v3H8zM13 13h3v3h-3zM13 8h3M8 13v3"/></svg></span><span><b>Scan UV Gift Card</b></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.661" data-ty="0.604" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.600 5.400 5.900.800-4.300 4.100 1 5.900L12 16.400 6.800 19.200l1-5.900L3.500 9.200l5.900-.800z"/></svg></span><span><b>Fitur Poin</b><small>Makin sering belanja, makin banyak poin terkumpul</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.883" data-ty="0.985" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.500" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><span><b>Beragam metode pembayaran</b><small>Virtual account, transfer bank, kartu kredit, PayLater, e-wallet, dan QRIS</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.476" data-ty="0.985" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a2 2 0 004 0V3M8 10v11M16 3c-1.700 1.500-2.500 4-2.500 7H17V3zM17 10v11"/></svg></span><span><b>UFood</b><small>Pesan antar makanan langsung dari aplikasi</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.5" data-ty="2.013" data-rv="right"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v18l-2.500-1.800L12 21l-2.500-1.800L7 21V3zM10 8h4M10 12h4"/></svg></span><span><b>My Voucher</b><small>Lihat daftar voucher yang sudah dan belum dipakai</small></span></div></div>
     </div>
   </div>
 </section>
@@ -902,7 +920,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     </div>
     <div class="browser" data-rv="zoom">
       <div class="browser-bar"><i></i><i></i><i></i><span>ultravoucher.co.id</span></div>
-      <div class="ph"><span>Slot tampilan web commerce · 1200 × 750</span></div>
+      <div class="ph"><span>Slot tampilan web commerce · 1200 × 750</span><img class="ph-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf1e5ea728cf3ad85fc638.png" alt="Tampilan web commerce Ultra Voucher" style="object-position:center top" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
     </div>
   </div>
 </section>
@@ -1007,23 +1025,94 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     [].forEach.call(document.querySelectorAll('.marquee-in'), function(m){ m.style.animationDuration = Math.max(20, m.scrollWidth / 2 / 35) + 's'; });
   });
 
-  // Fitur: sorotan berpindah sendiri, berhenti saat disentuh
-  var feats = [].slice.call(document.querySelectorAll('#feat .feat-item')), cap = document.getElementById('featCap'), cur = -1, hold = false;
-  function setFeat(i){
+  // Fitur: sorotan berpindah sendiri + garis menunjuk titik di layar
+  var fg = document.getElementById('feat'), feats = [].slice.call(fg.querySelectorAll('.feat-item')), svg = document.getElementById('fLines'),
+      scr = fg.querySelector('.fphone-scr'), ring = document.getElementById('fRing'), cur = -1, hold = false, NS = 'http://www.w3.org/2000/svg';
+  function mk(c){ var e = document.createElementNS(NS, 'path'); e.setAttribute('class', c); svg.appendChild(e); return e; }
+  var stubs = feats.map(function(){ return mk('stub'); }), halo = mk('halo'), ln = mk('ln'), head = mk('ln');
+  function tgt(f){ var W = scr.clientWidth; return { x: +f.dataset.tx * W, y: +f.dataset.ty * W }; }
+  function draw(animate){
+    if (getComputedStyle(svg).display === 'none' || cur < 0) return;
+    var g = fg.getBoundingClientRect(), s = scr.getBoundingClientRect(), ph = scr.parentNode.getBoundingClientRect();
+    svg.setAttribute('viewBox', '0 0 ' + g.width + ' ' + g.height);
+    feats.forEach(function(f, k){
+      var ic = f.querySelector('.feat-ico').getBoundingClientRect(), left = f.parentNode.classList.contains('l');
+      var x0 = (left ? ic.right + 8 : ic.left - 8) - g.left, y0 = ic.top + ic.height / 2 - g.top;
+      var xe = (left ? ph.left - 10 : ph.right + 10) - g.left;
+      f._p = [x0, y0, xe];
+      stubs[k].setAttribute('d', 'M' + x0 + ' ' + y0 + 'H' + xe);
+      stubs[k].style.opacity = k === cur ? 0 : 1;
+    });
+    var f = feats[cur], p = f._p, t = tgt(f), left = f.parentNode.classList.contains('l');
+    var tx = s.left - g.left + t.x, ty = s.top - g.top + t.y;
+    // berhenti di tepi lingkaran target
+    var dx = tx - p[2], dy = ty - p[1], c1x = p[2] + (left ? 1 : -1) * Math.min(60, Math.abs(dx) * .5);
+    var ang = Math.atan2(ty - p[1], tx - c1x), r = ring.offsetWidth / 2 + 4, ex = tx - Math.cos(ang) * r, ey = ty - Math.sin(ang) * r;
+    var d = 'M' + p[0] + ' ' + p[1] + 'H' + p[2] + 'C' + c1x + ' ' + p[1] + ' ' + c1x + ' ' + p[1] + ' ' + ex + ' ' + ey;
+    halo.setAttribute('d', d); ln.setAttribute('d', d);
+    var a1 = ang + 2.6, a2 = ang - 2.6;
+    head.setAttribute('d', 'M' + (ex + Math.cos(a1) * 9) + ' ' + (ey + Math.sin(a1) * 9) + 'L' + ex + ' ' + ey + 'L' + (ex + Math.cos(a2) * 9) + ' ' + (ey + Math.sin(a2) * 9));
+    if (animate && !reduce) {
+      [halo, ln].forEach(function(e){ var L = e.getTotalLength(); e.style.setProperty('--len', L); e.classList.remove('draw'); void e.getBBox(); e.classList.add('draw'); });
+      head.style.opacity = 0; clearTimeout(head._t); head._t = setTimeout(function(){ head.style.opacity = 1; }, 600);
+    }
+  }
+  function setFeat(i, fromScroll){
     cur = (i + feats.length) % feats.length;
     feats.forEach(function(f, k){ f.classList.toggle('is-on', k === cur); });
-    cap.querySelector('i').innerHTML = feats[cur].querySelector('.feat-ico').innerHTML;
-    cap.querySelector('span').textContent = feats[cur].querySelector('b').textContent;
-    cap.classList.remove('swap'); void cap.offsetWidth; cap.classList.add('swap');
+    var t = tgt(feats[cur]);
+    ring.style.left = (scr.clientLeft + t.x) + 'px'; ring.style.top = t.y + 'px'; ring.classList.add('on');
+    draw(true); settle();
+    if (typeof syncCar === 'function') { if (!fromScroll) syncCar(true); else cnt.textContent = (mOrder.indexOf(feats[cur]) + 1) + ' / ' + mOrder.length; }
   }
+  // ikuti posisi elemen selama transisi berjalan
+  var raf = 0, until = 0;
+  function settle(){ until = performance.now() + 700; if (!raf) raf = requestAnimationFrame(loop); }
+  function loop(){ draw(false); raf = performance.now() < until ? requestAnimationFrame(loop) : 0; }
+  window.addEventListener('resize', settle);
+  document.fonts && document.fonts.ready.then(settle);
   feats.forEach(function(f, i){
-    f.addEventListener('mouseenter', function(){ hold = true; setFeat(i); });
+    f.addEventListener('mouseenter', function(){ if (isCar()) return; hold = true; if (i !== cur) setFeat(i); });
     f.addEventListener('mouseleave', function(){ hold = false; });
-    f.addEventListener('focus', function(){ setFeat(i); });
+    f.addEventListener('focus', function(){ if (i !== cur) setFeat(i); });
+    f.addEventListener('click', function(){ if (isCar()) touched = true; });
     f.addEventListener('click', function(){ setFeat(i); });
   });
+  // Mobile: kartu fitur jadi carousel di bawah mockup
+  var mq = window.matchMedia('(max-width:980px)'), track = document.getElementById('fTrack'), cnt = document.getElementById('fCount'),
+      cols = [].slice.call(fg.querySelectorAll('.feat-col')), touched = false, sTimer = 0;
+  var mOrder = feats.slice().sort(function(a, b){ return (+a.dataset.ty - +b.dataset.ty) || (+a.dataset.tx - +b.dataset.tx); });
+  feats.forEach(function(f){ f._home = f.parentNode; });
+  function isCar(){ return mq.matches; }
+  function layout(){
+    if (isCar()) mOrder.forEach(function(f){ track.appendChild(f); });
+    else feats.forEach(function(f){ f._home.appendChild(f); });
+    if (cur >= 0) { syncCar(false); settle(); }
+  }
+  function syncCar(smooth){
+    if (!isCar()) return;
+    var f = feats[cur], k = mOrder.indexOf(f);
+    cnt.textContent = (k + 1) + ' / ' + mOrder.length;
+    var left = f.offsetLeft - (track.clientWidth - f.offsetWidth) / 2;
+    if (Math.abs(track.scrollLeft - left) > 2) track.scrollTo({ left: left, behavior: smooth && !reduce ? 'smooth' : 'auto' });
+  }
+  function step(d){ if (isCar()) setFeat(feats.indexOf(mOrder[(mOrder.indexOf(feats[cur]) + d + mOrder.length) % mOrder.length])); else setFeat(cur + d); }
+  track.addEventListener('scroll', function(){
+    clearTimeout(sTimer);
+    sTimer = setTimeout(function(){
+      var c = track.scrollLeft + track.clientWidth / 2, best = null, bd = 1e9;
+      mOrder.forEach(function(f){ var d = Math.abs(f.offsetLeft + f.offsetWidth / 2 - c); if (d < bd) { bd = d; best = f; } });
+      var i = feats.indexOf(best); if (i !== cur) setFeat(i, true);
+    }, 90);
+  }, { passive: true });
+  ['touchstart', 'pointerdown'].forEach(function(ev){ track.addEventListener(ev, function(){ touched = true; }, { passive: true }); });
+  document.getElementById('fPrev').addEventListener('click', function(){ touched = true; step(-1); });
+  document.getElementById('fNext').addEventListener('click', function(){ touched = true; step(1); });
+  (mq.addEventListener ? mq.addEventListener('change', layout) : mq.addListener(layout));
+  layout();
   setFeat(0);
-  if (!reduce) setInterval(function(){ if (!hold && !document.hidden) setFeat(cur + 1); }, 2600);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ if (en[0].isIntersecting) { setTimeout(function(){ setFeat(cur); }, 1000); } }, { threshold: .3 }).observe(fg);
+  if (!reduce) setInterval(function(){ if (!hold && !touched && !document.hidden) step(1); }, 3200);
 
   // Animasi saat scroll + angka menghitung naik
   var fmt = new Intl.NumberFormat('id-ID');
