@@ -167,6 +167,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .f2{left:2%;bottom:0;animation-delay:-4s}
 .panel{left:0;top:5%;width:76%;aspect-ratio:1.5;border-radius:20px;background:var(--bg);color:var(--muted);rotate:-4deg;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 40px 60px -30px rgba(0,0,0,.6);animation-delay:-1s}
 .panel-bar{display:flex;gap:6px}
+.panel.has-img{padding:0;overflow:hidden;background:var(--bg)}
+.panel.has-img>:not(.panel-img){display:none}
+.panel-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.phone-scr{position:relative;overflow:hidden}
+.phone-scr.has-img>span{display:none}
+.phone-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .panel-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
 .panel-rows{flex:1;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}
 .panel-rows b{border-radius:12px;background:var(--green-tint)}
@@ -179,6 +185,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .phone{left:18%;top:0;width:38%;aspect-ratio:9/18.5;border-radius:34px;background:var(--ink);padding:8px;rotate:-5deg;box-shadow:0 40px 60px -30px rgba(0,0,0,.6);animation-delay:-1.6s}
 .phone-scr{height:100%;border-radius:27px;background-color:var(--green-tint);background-image:linear-gradient(135deg,rgba(0,154,70,.08) 25%,transparent 25%,transparent 50%,rgba(0,154,70,.08) 50%,rgba(0,154,70,.08) 75%,transparent 75%);background-size:44px 44px;display:grid;place-items:center;text-align:center;padding:14px;color:var(--green-dark)}
 .tk3{top:56%;width:54%}
+.tk-img{right:-2%;top:58%;width:58%;height:auto;rotate:5deg;filter:drop-shadow(0 26px 26px rgba(0,0,0,.45));animation-delay:-2.4s}
+.tk-img3{top:54%;width:56%}
+.tk[hidden]{display:none}
 
 /* Bar angka */
 .stats{position:relative;z-index:2;margin-top:-64px}
@@ -521,15 +530,15 @@ button{font:inherit;color:inherit;cursor:pointer}
     <div class="stage" aria-hidden="true">
       <div class="set set1 is-active">
         <img class="float gc-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6a83db8e7f694711a3d5016e.png" alt="" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><div class="float gc" hidden><b>Ultra Voucher</b><div><em>Gift Card</em><br><span>Fisik dan digital</span></div></div>
-        <div class="float tk"><div><strong>Voucher digital</strong><small>10+ kategori belanja</small></div><i>VOUCHER</i></div>
+        <img class="float tk-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf3f5ecf1003e88748f690.png" alt="" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><div class="float tk" hidden><div><strong>Voucher digital</strong><small>10+ kategori belanja</small></div><i>VOUCHER</i></div>
       </div>
       <div class="set set2">
-        <div class="float panel"><div class="panel-bar"><i></i><i></i><i></i></div><div class="panel-rows"><b></b><b></b><b></b></div><span>Slot gambar · dashboard · 840 × 560</span></div>
+        <div class="float panel"><div class="panel-bar"><i></i><i></i><i></i></div><div class="panel-rows"><b></b><b></b><b></b></div><span>Slot gambar · dashboard · 840 × 560</span><img class="panel-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf30cbe58328a282734c77.png" alt="" onload="var p=this.parentNode;p.classList.add('has-img');if(this.naturalWidth)p.style.aspectRatio=this.naturalWidth+'/'+this.naturalHeight" onerror="this.remove()"></div>
         <img class="float gc-img gc-img-sm" src="https://img.mailinblue.com/1873598/images/content_library/original/6a83db8e7f694711a3d5016e.png" alt="" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><div class="float gc gc-sm" hidden><b>Ultra Voucher</b><div><em>Gift Card</em></div></div>
       </div>
       <div class="set set3">
-        <div class="float phone"><div class="phone-scr"><span>Slot gambar · layar UV App · 540 × 1170</span></div></div>
-        <div class="float tk tk3"><div><strong>Voucher digital</strong><small>10+ kategori belanja</small></div><i>VOUCHER</i></div>
+        <div class="float phone"><div class="phone-scr"><span>Slot gambar · layar UV App · 540 × 1170</span><img class="phone-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf1d6ee58328a2827347f8.jpg" alt="" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()"></div></div>
+        <img class="float tk-img tk-img3" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf3f5ecf1003e88748f690.png" alt="" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false"><div class="float tk tk3" hidden><div><strong>Voucher digital</strong><small>10+ kategori belanja</small></div><i>VOUCHER</i></div>
       </div>
     </div>
   </div>
