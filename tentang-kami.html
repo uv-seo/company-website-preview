@@ -167,6 +167,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .f2{left:2%;bottom:0;animation-delay:-4s}
 .panel{left:0;top:5%;width:76%;aspect-ratio:1.5;border-radius:20px;background:var(--bg);color:var(--muted);rotate:-4deg;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 40px 60px -30px rgba(0,0,0,.6);animation-delay:-1s}
 .panel-bar{display:flex;gap:6px}
+.panel.has-img{padding:0;overflow:hidden;background:var(--bg)}
+.panel.has-img>:not(.panel-img){display:none}
+.panel-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.phone-scr{position:relative;overflow:hidden}
+.phone-scr.has-img>span{display:none}
+.phone-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .panel-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
 .panel-rows{flex:1;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}
 .panel-rows b{border-radius:12px;background:var(--green-tint)}
@@ -179,6 +185,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .phone{left:18%;top:0;width:38%;aspect-ratio:9/18.5;border-radius:34px;background:var(--ink);padding:8px;rotate:-5deg;box-shadow:0 40px 60px -30px rgba(0,0,0,.6);animation-delay:-1.6s}
 .phone-scr{height:100%;border-radius:27px;background-color:var(--green-tint);background-image:linear-gradient(135deg,rgba(0,154,70,.08) 25%,transparent 25%,transparent 50%,rgba(0,154,70,.08) 50%,rgba(0,154,70,.08) 75%,transparent 75%);background-size:44px 44px;display:grid;place-items:center;text-align:center;padding:14px;color:var(--green-dark)}
 .tk3{top:56%;width:54%}
+.tk-img{right:-2%;top:58%;width:58%;height:auto;rotate:5deg;filter:drop-shadow(0 26px 26px rgba(0,0,0,.45));animation-delay:-2.4s}
+.tk-img3{top:54%;width:56%}
+.tk[hidden]{display:none}
 
 /* Bar angka */
 .stats{position:relative;z-index:2;margin-top:-64px}
@@ -500,6 +509,8 @@ main{overflow-x:clip}
 .rk-photo{grid-column:span 2;border-radius:var(--r-md);min-height:200px}
 .rk-photo:hover .ph-img{transform:scale(1.05)}
 .rk .facts{grid-column:span 4}
+.rk-video{grid-column:1/-1;position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:var(--ink);box-shadow:0 30px 50px -36px rgba(0,60,28,.6)}
+.rk-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .card h3{font-size:22px;font-weight:800;margin-bottom:12px}
 .lead p{font-size:clamp(16.5px,1.4vw,18.5px);line-height:1.7}
 .lead p+p{margin-top:16px}
@@ -788,6 +799,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
             <div class="fact"><b><em data-count="1000">1.000</em>+</b><span>merchant</span></div>
             <div class="fact"><b><em data-count="50000">50.000</em>+</b><span>outlet</span></div>
           </div>
+          <div class="rk-video"><iframe src="https://www.youtube.com/embed/2c9hiYGEqTg" title="Video profil Ultra Voucher" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         </div>
       </section>
 
@@ -858,9 +870,9 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
         <h2>Struktur Organisasi</h2>
         <div class="org-scroll">
           <div class="oc">
-            <div class="oc-main" style="--d:0"><span class="oc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span><small>Pengawasan</small><b>Dewan Komisaris</b></span></div>
+            <div class="oc-main" style="--d:0"><span class="oc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>Dewan Komisaris</b></span></div>
             <div class="oc-side" style="--d:1"><div class="ocn" style="--d:2"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21v-1a6 6 0 0112 0v1M16 11l2 2 4-4"/></svg></i><span>Komite Nominasi &amp; Remunerasi*</span></div><div class="ocn" style="--d:2"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 12l2 2 4-4"/></svg></i><span>Komite Audit</span></div></div>
-            <div class="oc-main dir" style="--d:3"><span class="oc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 13h18"/></svg></span><span><small>Pengurusan</small><b>Direksi</b></span></div>
+            <div class="oc-main dir" style="--d:3"><span class="oc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 13h18"/></svg></span><span><b>Direksi</b></span></div>
             <div class="oc-side" style="--d:4"><div class="ocn" style="--d:5"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></i><span>Corporate Secretary</span></div><div class="ocn" style="--d:5"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></i><span>Internal Audit</span></div></div>
             <div class="oc-spine" style="--d:6"></div>
             <div class="oc-div" style="--d:6"><span class="oc-div-tag">7 Divisi</span><div class="oc-grid"><div class="ocd" style="--d:7"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></i><span><b>Human Capital &amp; General Affairs</b></span></div><div class="ocd" style="--d:8"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg></i><span><b>Corporate Office</b><small>Corporate Communication, Corporate Secretary &amp; Legal</small></span></div><div class="ocd" style="--d:9"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></i><span><b>Corporate Planning &amp; Business Development</b></span></div><div class="ocd" style="--d:10"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg></i><span><b>Finance, Accounting, Tax &amp; SCM</b></span></div><div class="ocd" style="--d:11"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6M14 4l-4 16"/></svg></i><span><b>Product &amp; Technology</b></span></div><div class="ocd" style="--d:12"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 001 1h2l5 4V6L6 10H4a1 1 0 00-1 1zM15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg></i><span><b>Marketing &amp; Commercial</b><small>B2C</small></span></div><div class="ocd" style="--d:13"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13l-2-2 4-4 5 5-4 4M3 12l4-4 3 3M7 16l3 3 4-4"/></svg></i><span><b>Corporate Sales &amp; Marketplace</b><small>B2B</small></span></div></div></div>
@@ -904,7 +916,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       <section class="tpanel" id="p-tata-kelola">
         <h2>Tata Kelola Perusahaan</h2>
         <div class="card lead"><p>Dalam menjalankan bisnisnya, Ultra Voucher berupaya untuk selalu menerapkan prinsip-prinsip tata kelola perusahaan yang baik (Good Corporate Governance).</p></div>
-        <div class="gov"><a href="https://blog.ultravoucher.co.id/tentang-kami/tata-kelola-perusahaan/#sekretaris-perusahaan"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-1-fvdXBdhu.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Sekretaris &amp; Komite Perusahaan</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://blog.ultravoucher.co.id/pusat-unduhan/rups"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-2-BDy4Undc.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>RUPST &amp; RUPSLB</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://blog.ultravoucher.co.id/pusat-unduhan/laporan-keterbukaan"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-3-peuFL9rO.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Keterbukaan Informasi</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a></div>
+        <div class="gov"><a href="https://blog.ultravoucher.co.id/tentang-kami/tata-kelola-perusahaan/#sekretaris-perusahaan"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-1-fvdXBdhu.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Sekretaris &amp; Komite Perusahaan</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#rupst"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-2-BDy4Undc.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>RUPST &amp; RUPSLB</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#keterbukaan-informasi"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-3-peuFL9rO.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Keterbukaan Informasi</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a></div>
       </section>
 
       <section class="tpanel" id="p-penghargaan">
@@ -1034,13 +1046,18 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 
   // Angka menghitung naik saat Ringkasan tampil
   var fmt = new Intl.NumberFormat('id-ID');
+  function runCount(el){
+    var end = Number(el.dataset.count), t0 = null;
+    (function step(ts){ ts = ts || performance.now(); if (t0 === null) t0 = ts; var q = Math.min(1, (ts - t0) / 1600), e = 1 - Math.pow(1 - q, 3);
+      el.textContent = fmt.format(Math.round(end * e)); if (q < 1) requestAnimationFrame(step); })();
+  }
+  // jalan saat angka benar-benar terlihat di layar
+  var cio = ('IntersectionObserver' in window) ? new IntersectionObserver(function(en){
+    en.forEach(function(x){ if (x.isIntersecting) { runCount(x.target); cio.unobserve(x.target); } });
+  }, { threshold: .6 }) : null;
   function countAll(){
-    if (reduce) return;
-    [].forEach.call(document.querySelectorAll('#p-ringkasan [data-count]'), function(el){
-      var end = Number(el.dataset.count), t0 = null;
-      (function step(ts){ if (t0 === null) t0 = ts || 0; var q = Math.min(1, ((ts || 0) - t0) / 1400), e = 1 - Math.pow(1 - q, 3);
-        el.textContent = fmt.format(Math.round(end * e)); if (q < 1) requestAnimationFrame(step); })();
-    });
+    if (reduce || !cio) return;
+    [].forEach.call(document.querySelectorAll('#p-ringkasan [data-count]'), function(el){ cio.unobserve(el); cio.observe(el); });
   }
 
   // Animasi saat scroll di tiap menu: isi panel muncul berurutan ketika masuk layar
