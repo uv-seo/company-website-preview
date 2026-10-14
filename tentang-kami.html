@@ -1056,7 +1056,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   var STOCK_SRC = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdU6URx18-ajEd1AUwh8wY4QLjZafjh8FQ8jqfe99SxCMVhM-OkhMwDd0sqUejWuM1dfatBNF1-YIR/pub?gid=0&single=true&output=csv';
   function loadStock(){
     if (!STOCK_SRC || !window.fetch) return;
-    fetch(STOCK_SRC + '?t=' + Date.now(), { cache: 'no-store' })
+    fetch(STOCK_SRC + (STOCK_SRC.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' })
       .then(function(r){ if (!r.ok) throw 0; return r.text(); })
       .then(function(t){
         var d;
