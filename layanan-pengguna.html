@@ -526,6 +526,13 @@ main{overflow-x:clip}
 .stock:hover{transform:translateY(-5px);box-shadow:0 34px 50px -26px rgba(236,153,4,.95)}
 .stock::after{content:"";position:absolute;right:-80px;bottom:-90px;width:240px;height:240px;border-radius:50%;border:34px solid rgba(255,255,255,.3)}
 .stock>*{position:relative;z-index:1}
+.stock .stock-spark{position:absolute;z-index:0;left:0;right:0;bottom:96px;height:38%;width:100%;opacity:0;transition:opacity .8s}
+.stock.has-spark .stock-spark{opacity:1}
+.stock.has-spark::after{display:none}
+.stock-spark .area{fill:url(#stkGrad)}
+.stock-spark .line{fill:none;stroke:rgba(60,40,0,.36);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.stock-spark .grid{stroke:rgba(60,40,0,.12);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:3 4}
+.stock .stock-range{position:absolute;z-index:1;right:22px;bottom:104px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(60,40,0,.55)}
 .stock-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
 .stock-tk{font-size:13.5px;font-weight:900;letter-spacing:.1em;color:var(--green-deep)}
 .stock-chip{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:rgba(255,255,255,.6);padding:4px 11px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
@@ -535,7 +542,12 @@ main{overflow-x:clip}
 .stock-price small{font-size:.2em;font-weight:800;letter-spacing:.08em;color:var(--amber-ink);margin-left:8px}
 .stock-head{display:grid;gap:3px}
 .stock-head b{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.2}
-.stock-mid{flex:1;display:flex;align-items:center}
+.stock-mid{flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px}
+.stock-chg{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;background:rgba(255,255,255,.55);color:var(--ink)}
+.stock-chg.up{color:#00733a}.stock-chg.down{color:#c62f22}
+.stock-chg.up::before{content:"\25B2";font-size:10px}.stock-chg.down::before{content:"\25BC";font-size:10px}
+#stkPrice.flash{animation:stkflash 1s}
+@keyframes stkflash{30%{color:var(--green-deep)}}
 .stock-foot{position:relative;display:grid;gap:12px;border-top:2px dashed rgba(60,40,0,.32);padding-top:16px}
 .stock-foot::before,.stock-foot::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--surface)}
 .stock-foot::before{left:-37px}.stock-foot::after{right:-37px}
@@ -713,8 +725,9 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .gov,.awards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ph-grid{grid-template-columns:1fr}
   .hero-ph{display:none}
-  .rk-text,.rk-photo,.rk .stock,.rk .facts{grid-column:1/-1}
-  .rk-photo{min-height:200px}
+  .rk-text,.rk .stock{grid-column:1/-1}
+  .rk-photo{grid-column:span 2;min-height:0;aspect-ratio:1/1;align-self:center}
+  .rk .facts{grid-column:span 4}
   .tl{padding-left:34px;gap:26px}
   .tl::before,.tl-fill{left:9px}
   .tl-item{grid-template-columns:1fr;gap:12px}
@@ -722,6 +735,10 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .tl-item:nth-of-type(even) .tl-card{order:0}
 }
 @media (max-width:620px){
+  .stock .stock-range{display:none}
+  .stock .stock-spark{height:52%}
+  .rk-photo,.rk .facts{grid-column:1/-1}
+  .rk-photo{width:100%;aspect-ratio:1/1}
   .page-hero{padding-block:128px 52px}
   .page-body{padding-block:28px 72px}
   .card{padding:22px}
@@ -887,7 +904,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     <div class="sec-head"><div data-rv="up"><h2>Semua kebutuhan voucher dalam satu aplikasi</h2></div></div>
     <div class="feat-grid" id="feat">
       <svg class="flines" id="fLines" aria-hidden="true"></svg>
-      <div class="feat-col l"><div class="feat-item" role="button" tabindex="0" data-tx="0.109" data-ty="0.4" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 012-2h11v4M4 7v10a2 2 0 002 2h13a1 1 0 001-1v-8a1 1 0 00-1-1H6a2 2 0 01-2-2zM16.500 14h.010"/></svg></span><span><b>Ultra Value</b><small>Saldo digital untuk belanja voucher</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.189" data-ty="0.604" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14.5" r="5.5"/><path d="M8.5 10.2L6 3h4l2 5M15.5 10.2L18 3h-4l-2 5M12 12.3l.8 1.5 1.6.2-1.2 1.1.3 1.6-1.5-.8-1.5.8.3-1.6-1.2-1.1 1.6-.2z"/></svg></span><span><b>Tier member</b><small>Silver, Gold, Diamond, dan Platinum, sesuai jumlah transaksi per bulan</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.219" data-ty="0.793" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M21 19H3"/></svg></span><span><b>Smart Saver</b><small>Pantau pengeluaran dan penghematan Anda</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.117" data-ty="0.985" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-1.500-3.500-6-3-5 0M12 7c1.500-3.500 6-3 5 0"/></svg></span><span><b>Bagikan voucher</b><small>Kirim voucher sebagai hadiah ke sesama user</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.124" data-ty="1.887" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.200 7-11.500A7 7 0 005 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg></span><span><b>13 kategori voucher</b><small>Pilihan voucher untuk belanja lebih hemat</small></span></div></div>
+      <div class="feat-col l"><div class="feat-item" role="button" tabindex="0" data-tx="0.109" data-ty="0.4" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 012-2h11v4M4 7v10a2 2 0 002 2h13a1 1 0 001-1v-8a1 1 0 00-1-1H6a2 2 0 01-2-2zM16.500 14h.010"/></svg></span><span><b>Ultra Value</b><small>Saldo digital untuk belanja voucher</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.189" data-ty="0.604" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14.5" r="5.5"/><path d="M8.5 10.2L6 3h4l2 5M15.5 10.2L18 3h-4l-2 5M12 12.3l.8 1.5 1.6.2-1.2 1.1.3 1.6-1.5-.8-1.5.8.3-1.6-1.2-1.1 1.6-.2z"/></svg></span><span><b>Tier member</b><small>Silver, Gold, Diamond, dan Platinum, sesuai jumlah transaksi per bulan</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.219" data-ty="0.793" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M10 19V5M16 19v-7M21 19H3"/></svg></span><span><b>Smart Saver</b><small>Pantau pengeluaran dan penghematan Anda</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.117" data-ty="0.985" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-1.500-3.500-6-3-5 0M12 7c1.500-3.500 6-3 5 0"/></svg></span><span><b>Kirim hadiah voucher</b><small>Kirim voucher sebagai hadiah ke sesama user</small></span></div><div class="feat-item" role="button" tabindex="0" data-tx="0.124" data-ty="1.887" data-rv="left"><span class="feat-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.200 7-11.500A7 7 0 005 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg></span><span><b>Pilihan kategori voucher</b><small>1.000+ pilihan merchant dari 13 kategori voucher</small></span></div></div>
       <div class="fphone-wrap" data-rv="zoom">
         <div class="fphone"><div class="fphone-scr">
           <div class="ph"><span>Slot layar aplikasi · 540 × 1170</span><img class="ph-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf1d6ee58328a2827347f8.jpg" alt="Tampilan aplikasi Ultra Voucher" style="object-position:center top" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
