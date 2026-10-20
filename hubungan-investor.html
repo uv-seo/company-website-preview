@@ -90,6 +90,17 @@ button{font:inherit;color:inherit;cursor:pointer}
 .nav{display:flex;gap:2px;margin-left:auto}
 .nav a{padding:9px 12px;font-size:14.5px;font-weight:700;border-radius:999px;white-space:nowrap;transition:background .25s,color .25s}
 .nav a:hover,.nav a[aria-current]{background:rgba(255,255,255,.18)}
+.nav-dd{position:relative;display:flex;align-items:center}
+.nav-dd>a{padding-right:26px}
+.dd-car{position:absolute;right:10px;top:50%;margin-top:-6px;display:grid;place-items:center;pointer-events:none;transition:transform .3s var(--ease)}
+.nav-dd:hover .dd-car,.nav-dd:focus-within .dd-car{transform:rotate(180deg)}
+.dd-menu{position:absolute;left:50%;top:100%;min-width:270px;padding:8px;margin-top:10px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 48px -24px rgba(0,40,18,.45);display:grid;gap:2px;opacity:0;visibility:hidden;transform:translate(-50%,6px);transition:opacity .25s,transform .3s var(--ease),visibility .25s;z-index:20}
+.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.nav-dd:hover .dd-menu,.nav-dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav .dd-menu a{display:grid;gap:2px;padding:11px 14px;border-radius:12px;white-space:nowrap;color:var(--ink);background:transparent}
+.nav .dd-menu a b{font-size:14.5px;font-weight:800}
+.nav .dd-menu a small{font-size:12.5px;font-weight:600;color:var(--muted)}
+.nav .dd-menu a:hover,.nav .dd-menu a[aria-current]{background:var(--green-tint);color:var(--green-dark)}
 .header.scrolled .nav a:hover,.header.scrolled .nav a[aria-current]{background:var(--green-tint);color:var(--green-dark)}
 .pill .btn{height:44px;padding-inline:20px;flex:none}
 .burger{display:none;width:44px;height:44px;border-radius:50%;border:1.5px solid currentColor;background:transparent;margin-left:auto;place-items:center;opacity:.9}
@@ -100,6 +111,14 @@ button{font:inherit;color:inherit;cursor:pointer}
   .nav.open{display:flex}
   .nav a{padding:14px 6px;border-radius:0;border-bottom:1px solid var(--line)}
   .nav a:last-child{border-bottom:0}
+  .nav-dd{display:block}
+  .nav-dd>a{display:block;padding-right:6px;border-bottom:0!important}
+  .dd-car{display:none}
+  .dd-menu{position:static;min-width:0;margin:0 0 4px;padding:0 0 8px 14px;border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;opacity:1;visibility:visible;transform:none;background:transparent}
+  .dd-menu::before{display:none}
+  .nav .dd-menu a{padding:8px 6px;border:0;border-left:2px solid var(--line);border-radius:0}
+  .nav .dd-menu a small{display:none}
+  .nav .dd-menu a:hover,.nav .dd-menu a[aria-current]{background:transparent;color:var(--green);border-left-color:var(--green)}
   .nav a:hover,.nav a[aria-current],.header.scrolled .nav a:hover,.header.scrolled .nav a[aria-current]{background:transparent;color:var(--green)}
 }
 
@@ -167,6 +186,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 .f2{left:2%;bottom:0;animation-delay:-4s}
 .panel{left:0;top:5%;width:76%;aspect-ratio:1.5;border-radius:20px;background:var(--bg);color:var(--muted);rotate:-4deg;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 40px 60px -30px rgba(0,0,0,.6);animation-delay:-1s}
 .panel-bar{display:flex;gap:6px}
+.panel.has-img{padding:0;overflow:hidden;background:var(--bg)}
+.panel.has-img>:not(.panel-img){display:none}
+.panel-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.phone-scr{position:relative;overflow:hidden}
+.phone-scr.has-img>span{display:none}
+.phone-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .panel-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
 .panel-rows{flex:1;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}
 .panel-rows b{border-radius:12px;background:var(--green-tint)}
@@ -179,6 +204,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .phone{left:18%;top:0;width:38%;aspect-ratio:9/18.5;border-radius:34px;background:var(--ink);padding:8px;rotate:-5deg;box-shadow:0 40px 60px -30px rgba(0,0,0,.6);animation-delay:-1.6s}
 .phone-scr{height:100%;border-radius:27px;background-color:var(--green-tint);background-image:linear-gradient(135deg,rgba(0,154,70,.08) 25%,transparent 25%,transparent 50%,rgba(0,154,70,.08) 50%,rgba(0,154,70,.08) 75%,transparent 75%);background-size:44px 44px;display:grid;place-items:center;text-align:center;padding:14px;color:var(--green-dark)}
 .tk3{top:56%;width:54%}
+.tk-img{right:-2%;top:58%;width:58%;height:auto;rotate:5deg;filter:drop-shadow(0 26px 26px rgba(0,0,0,.45));animation-delay:-2.4s}
+.tk-img3{top:54%;width:56%}
+.tk[hidden]{display:none}
 
 /* Bar angka */
 .stats{position:relative;z-index:2;margin-top:-64px}
@@ -500,6 +528,8 @@ main{overflow-x:clip}
 .rk-photo{grid-column:span 2;border-radius:var(--r-md);min-height:200px}
 .rk-photo:hover .ph-img{transform:scale(1.05)}
 .rk .facts{grid-column:span 4}
+.rk-video{grid-column:1/-1;position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:var(--ink);box-shadow:0 30px 50px -36px rgba(0,60,28,.6)}
+.rk-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .card h3{font-size:22px;font-weight:800;margin-bottom:12px}
 .lead p{font-size:clamp(16.5px,1.4vw,18.5px);line-height:1.7}
 .lead p+p{margin-top:16px}
@@ -515,6 +545,13 @@ main{overflow-x:clip}
 .stock:hover{transform:translateY(-5px);box-shadow:0 34px 50px -26px rgba(236,153,4,.95)}
 .stock::after{content:"";position:absolute;right:-80px;bottom:-90px;width:240px;height:240px;border-radius:50%;border:34px solid rgba(255,255,255,.3)}
 .stock>*{position:relative;z-index:1}
+.stock .stock-spark{position:absolute;z-index:0;left:0;right:0;bottom:96px;height:38%;width:100%;opacity:0;transition:opacity .8s}
+.stock.has-spark .stock-spark{opacity:1}
+.stock.has-spark::after{display:none}
+.stock-spark .area{fill:url(#stkGrad)}
+.stock-spark .line{fill:none;stroke:rgba(60,40,0,.36);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.stock-spark .grid{stroke:rgba(60,40,0,.12);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:3 4}
+.stock .stock-range{position:absolute;z-index:1;right:22px;bottom:104px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(60,40,0,.55)}
 .stock-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
 .stock-tk{font-size:13.5px;font-weight:900;letter-spacing:.1em;color:var(--green-deep)}
 .stock-chip{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:rgba(255,255,255,.6);padding:4px 11px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
@@ -524,7 +561,12 @@ main{overflow-x:clip}
 .stock-price small{font-size:.2em;font-weight:800;letter-spacing:.08em;color:var(--amber-ink);margin-left:8px}
 .stock-head{display:grid;gap:3px}
 .stock-head b{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.2}
-.stock-mid{flex:1;display:flex;align-items:center}
+.stock-mid{flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px}
+.stock-chg{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;background:rgba(255,255,255,.55);color:var(--ink)}
+.stock-chg.up{color:#00733a}.stock-chg.down{color:#c62f22}
+.stock-chg.up::before{content:"\25B2";font-size:10px}.stock-chg.down::before{content:"\25BC";font-size:10px}
+#stkPrice.flash{animation:stkflash 1s}
+@keyframes stkflash{30%{color:var(--green-deep)}}
 .stock-foot{position:relative;display:grid;gap:12px;border-top:2px dashed rgba(60,40,0,.32);padding-top:16px}
 .stock-foot::before,.stock-foot::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--surface)}
 .stock-foot::before{left:-37px}.stock-foot::after{right:-37px}
@@ -702,8 +744,9 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .gov,.awards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ph-grid{grid-template-columns:1fr}
   .hero-ph{display:none}
-  .rk-text,.rk-photo,.rk .stock,.rk .facts{grid-column:1/-1}
-  .rk-photo{min-height:200px}
+  .rk-text,.rk .stock{grid-column:1/-1}
+  .rk-photo{grid-column:span 2;min-height:0;aspect-ratio:1/1;align-self:center}
+  .rk .facts{grid-column:span 4}
   .tl{padding-left:34px;gap:26px}
   .tl::before,.tl-fill{left:9px}
   .tl-item{grid-template-columns:1fr;gap:12px}
@@ -711,6 +754,10 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .tl-item:nth-of-type(even) .tl-card{order:0}
 }
 @media (max-width:620px){
+  .stock .stock-range{display:none}
+  .stock .stock-spark{height:52%}
+  .rk-photo,.rk .facts{grid-column:1/-1}
+  .rk-photo{width:100%;aspect-ratio:1/1}
   .page-hero{padding-block:128px 52px}
   .page-body{padding-block:28px 72px}
   .card{padding:22px}
@@ -807,7 +854,13 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     <nav class="nav" id="nav" aria-label="Menu utama">
       <a href="tentang-kami.html">Tentang Kami</a>
       <a href="layanan-pengguna.html">Layanan Pengguna</a>
-      <a href="layanan-perusahaan.html">Layanan Perusahaan</a>
+      <div class="nav-dd">
+        <a href="layanan-perusahaan.html">Layanan Perusahaan</a><span class="dd-car" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        <div class="dd-menu">
+          <a class="dd-main" href="layanan-perusahaan.html"><b>Produk dan Layanan</b><small>Solusi reward untuk korporat</small></a>
+          <a class="dd-sub" href="untuk-merchant.html"><b>Untuk Merchant</b><small>Jadi merchant partner Ultra Voucher</small></a>
+        </div>
+      </div>
       <a href="hubungan-investor.html" aria-current="page">Hubungan Investor</a>
       <a href="karier.html">Karier</a>
       <a href="csr.html">CSR</a>
@@ -937,6 +990,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       <ul class="f-list">
         <li><a href="layanan-pengguna.html">Layanan Pengguna</a></li>
         <li><a href="layanan-perusahaan.html">Layanan Perusahaan</a></li>
+        <li><a href="untuk-merchant.html">Untuk Merchant</a></li>
         <li><a href="hubungi-kami.html">Hubungi Kami</a></li>
       </ul>
     </div>
