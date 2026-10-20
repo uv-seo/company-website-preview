@@ -835,6 +835,41 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 .job h3{font-size:21px;font-weight:800;line-height:1.25}
 .job-meta{display:flex;flex-wrap:wrap;gap:8px}
 .job-meta span{display:inline-flex;align-items:center;gap:6px;height:32px;padding-inline:12px;border-radius:999px;background:var(--surface);font-size:13px;font-weight:700;color:var(--muted)}
+.job{cursor:pointer}
+.job:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.job-act{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.job-prev{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:800;color:var(--muted);transition:color .25s}
+.job:hover .job-prev{color:var(--ink)}
+.job-li,.jm-li{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:var(--bg);border:1.5px solid #c9d6e3;color:#38434f;font-size:14px;font-weight:800;transition:border-color .25s,box-shadow .25s,transform .25s var(--ease)}
+.job-li:hover,.jm-li:hover{border-color:#0a66c2;box-shadow:0 10px 22px -14px rgba(10,102,194,.7);transform:translateY(-2px)}
+.li-logo{display:block;height:14.4px;width:auto;margin-top:-1px}
+.li-txt{color:#0a66c2;font-weight:900}
+.jm-li{height:52px;font-size:15.5px;background:#eef4fb;border-color:#0a66c2;border-width:2px}
+.jm-li .li-logo{height:15.8px}
+/* modal poster lowongan */
+.jm{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:24px;background:rgba(8,20,12,.72);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.jm.open{opacity:1;visibility:visible}
+.jm-box{position:relative;width:min(1060px,100%);max-height:calc(100vh - 48px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);border-radius:var(--r-lg);background:var(--bg);overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);transform:translateY(16px) scale(.98);transition:transform .4s var(--ease)}
+.jm.open .jm-box{transform:none}
+.jm-pic{position:relative;background:var(--surface);overflow:auto;max-height:calc(100vh - 48px);display:grid;place-items:center;padding:20px}
+.jm-pic img{display:block;max-width:100%;max-height:calc(100vh - 88px);width:auto;height:auto;border-radius:12px;cursor:zoom-in;box-shadow:0 20px 40px -24px rgba(0,0,0,.45)}
+.jm-pic.zoom{place-items:start center}
+.jm-pic.zoom img{max-height:none;max-width:none;width:160%;cursor:zoom-out}
+.jm-load{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted)}
+.jm-info{display:flex;flex-direction:column;gap:12px;padding:44px 36px 32px;overflow:auto}
+.jm-info .job-div{font-size:13px}
+.jm-info h3{margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:800;line-height:1.2;color:var(--ink)}
+.jm-hint{margin:4px 0 0;color:var(--muted);font-size:14.5px;line-height:1.6}
+.jm-btns{display:grid;gap:10px;margin-top:auto;padding-top:20px}
+.jm-btns .btn{justify-content:center}
+.jm-alt{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;border-radius:999px;border:1.5px solid var(--line);font-weight:800;font-size:15px;color:var(--ink);background:none;cursor:pointer;font-family:inherit;transition:border-color .25s,color .25s}
+.jm-alt:hover{border-color:var(--green);color:var(--green)}
+.jm-full{align-self:center;font-size:13.5px;font-weight:800;color:var(--green)}
+.jm-x{position:absolute;top:14px;right:14px;z-index:3;width:42px;height:42px;border-radius:50%;border:0;background:var(--bg);box-shadow:0 8px 20px -10px rgba(0,0,0,.5);display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.jm-nav{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--muted)}
+.jm-nav button{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.jm-nav button:disabled{opacity:.35;cursor:default}
+body.jm-lock{overflow:hidden}
 .job-go{margin-top:auto;padding-top:14px;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:15px;color:var(--green)}
 .job-go svg{transition:transform .3s var(--ease)}
 .job:hover .job-go svg{transform:translateX(4px)}
@@ -880,6 +915,18 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .cv-media{min-height:320px}
   .gal .ph{height:260px}.gal .ph.t{width:208px}.gal .ph.w{width:390px}
   .rv-left,.rv-right{transform:translateY(40px)}
+}
+@media (max-width:860px){
+  .jm{padding:0;place-items:stretch}
+  .jm-box{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;width:100%;max-height:none;height:100%;border-radius:0}
+  .jm-pic{max-height:none;padding:64px 14px 14px}
+  .jm-pic img{max-height:none;width:100%}
+  .jm-pic.zoom img{width:200%}
+  .jm-info{padding:18px 20px calc(18px + env(safe-area-inset-bottom,0px));gap:8px;border-top:1px solid var(--line);overflow:visible}
+  .jm-info h3{font-size:21px}
+  .jm-hint{display:none}
+  .jm-btns{padding-top:8px}
+  .jm-btns .jm-full{grid-column:1/-1}
 }
 @media (max-width:640px){
   .jobs{grid-template-columns:minmax(0,1fr)}
@@ -942,21 +989,18 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     <div class="kcats" role="tablist" id="kcats">
       <button type="button" class="kcat is-on" data-k="operation" role="tab" id="kt-operation" aria-controls="kp-operation" aria-selected="true" data-rv="zoom">
         <span class="kcat-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></span>
-        <span class="kcat-n"><em>6</em> lowongan</span>
         <b>Operation</b><small>Membangun produk dan menjaga operasional tetap berjalan andal setiap hari.</small>
         <i class="kcat-go"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i>
         <span class="kcat-mark" aria-hidden="true"><svg width="170" height="170" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></span>
       </button>
       <button type="button" class="kcat" data-k="business" role="tab" id="kt-business" aria-controls="kp-business" aria-selected="false" data-rv="zoom">
         <span class="kcat-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
-        <span class="kcat-n"><em>3</em> lowongan</span>
         <b>Business</b><small>Mengembangkan bisnis, menjangkau klien baru, dan menumbuhkan brand Ultra Voucher.</small>
         <i class="kcat-go"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i>
         <span class="kcat-mark" aria-hidden="true"><svg width="170" height="170" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
       </button>
       <button type="button" class="kcat" data-k="support" role="tab" id="kt-support" aria-controls="kp-support" aria-selected="false" data-rv="zoom">
         <span class="kcat-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></span>
-        <span class="kcat-n"><em>2</em> lowongan</span>
         <b>Support</b><small>Memastikan perusahaan berjalan dengan tata kelola, talenta, dan komunikasi yang baik.</small>
         <i class="kcat-go"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i>
         <span class="kcat-mark" aria-hidden="true"><svg width="170" height="170" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></span>
@@ -966,80 +1010,80 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     <div class="kpanel is-on" id="kp-operation" role="tabpanel" aria-labelledby="kt-operation">
       <div class="kpanel-head"><h3>Lowongan Operation</h3><div class="kpanel-act"><span class="jnav"><button class="round-btn jprev" type="button" aria-label="Sebelumnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button class="round-btn jnext" type="button" aria-label="Berikutnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></span></div></div>
       <div class="jobs slider">
-        <a class="job" href="#lamar" data-pos="Backend Engineer" data-bid="Operation" style="--i:0">
+        <div class="job" role="button" tabindex="0" data-pos="Backend Engineer" data-bid="Operation" data-div="Product &amp; Technology" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:0">
           <span class="job-div">Product &amp; Technology</span>
           <h3>Backend Engineer</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="Mobile Engineer" data-bid="Operation" style="--i:1">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="Mobile Engineer" data-bid="Operation" data-div="Product &amp; Technology" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:1">
           <span class="job-div">Product &amp; Technology</span>
           <h3>Mobile Engineer</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="Frontend Engineer" data-bid="Operation" style="--i:2">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="Frontend Engineer" data-bid="Operation" data-div="Product &amp; Technology" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:2">
           <span class="job-div">Product &amp; Technology</span>
           <h3>Frontend Engineer</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="QA Engineer" data-bid="Operation" style="--i:3">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="QA Engineer" data-bid="Operation" data-div="Product &amp; Technology" data-type="Kontrak" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:3">
           <span class="job-div">Product &amp; Technology</span>
           <h3>QA Engineer</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Kontrak</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="UI/UX Designer" data-bid="Operation" style="--i:4">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="UI/UX Designer" data-bid="Operation" data-div="Product &amp; Technology" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:4">
           <span class="job-div">Product &amp; Technology</span>
           <h3>UI/UX Designer</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="Accounting Staff" data-bid="Operation" style="--i:5">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="Accounting Staff" data-bid="Operation" data-div="Finance, Accounting, Tax &amp; SCM" data-type="Kontrak" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:5">
           <span class="job-div">Finance, Accounting, Tax &amp; SCM</span>
           <h3>Accounting Staff</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Kontrak</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a></div><div class="jbar"><i></i></div>
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div></div><div class="jbar"><i></i></div>
     </div>
     <div class="kpanel" id="kp-business" role="tabpanel" aria-labelledby="kt-business" hidden>
       <div class="kpanel-head"><h3>Lowongan Business</h3><div class="kpanel-act"></div></div>
       <div class="jobs">
-        <a class="job" href="#lamar" data-pos="Corporate Sales Executive" data-bid="Business" style="--i:0">
+        <div class="job" role="button" tabindex="0" data-pos="Corporate Sales Executive" data-bid="Business" data-div="Corporate Sales &amp; Marketplace (B2B)" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:0">
           <span class="job-div">Corporate Sales &amp; Marketplace (B2B)</span>
           <h3>Corporate Sales Executive</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="Digital Marketing Specialist" data-bid="Business" style="--i:1">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="Digital Marketing Specialist" data-bid="Business" data-div="Marketing &amp; Commercial (B2C)" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:1">
           <span class="job-div">Marketing &amp; Commercial (B2C)</span>
           <h3>Digital Marketing Specialist</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="Business Development Manager" data-bid="Business" style="--i:2">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="Business Development Manager" data-bid="Business" data-div="Corporate Planning &amp; Business Development" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:2">
           <span class="job-div">Corporate Planning &amp; Business Development</span>
           <h3>Business Development Manager</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a></div>
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div></div>
     </div>
     <div class="kpanel" id="kp-support" role="tabpanel" aria-labelledby="kt-support" hidden>
       <div class="kpanel-head"><h3>Lowongan Support</h3><div class="kpanel-act"></div></div>
       <div class="jobs">
-        <a class="job" href="#lamar" data-pos="HR Generalist" data-bid="Support" style="--i:0">
+        <div class="job" role="button" tabindex="0" data-pos="HR Generalist" data-bid="Support" data-div="Human Capital &amp; General Affairs" data-type="Full-time" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:0">
           <span class="job-div">Human Capital &amp; General Affairs</span>
           <h3>HR Generalist</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Full-time</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a>
-        <a class="job" href="#lamar" data-pos="Legal Officer" data-bid="Support" style="--i:1">
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div>
+        <div class="job" role="button" tabindex="0" data-pos="Legal Officer" data-bid="Support" data-div="Corporate Office" data-type="Kontrak" data-poster="https://img.mailinblue.com/1873598/images/content_library/original/6ad748aefd8ca38cd59e4d9d.png" data-li="https://www.linkedin.com/company/ultravoucher/jobs/" aria-haspopup="dialog" style="--i:1">
           <span class="job-div">Corporate Office</span>
           <h3>Legal Officer</h3>
           <div class="job-meta"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Jakarta Selatan</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Kontrak</span></div>
-          <span class="job-go">Lamar posisi ini <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-        </a></div>
+          <div class="job-act"><span class="job-prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Lihat detail</span><a class="job-li" href="https://www.linkedin.com/company/ultravoucher/jobs/" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a></div>
+        </div></div>
     </div>
     </div>
   </div>
@@ -1050,8 +1094,8 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   <div class="wrap cv">
     <div class="cv-media" data-rv="left"><div class="ph"><span>Slot foto · 900 × 1100</span><img class="ph-img" src="https://img.mailinblue.com/1873598/images/content_library/original/6acf1e0bd41ee4ec084443e5.jpg" alt="Karier di Ultra Voucher" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div></div>
     <div class="cv-card" data-rv="right">
-      <h2 class="lp-h2">Kirim lamaran Anda</h2>
-      <p>Lamar posisi yang tersedia, atau kirim lamaran umum. Tim Human Capital akan menghubungi Anda jika ada posisi yang sesuai.</p>
+      <h2 class="lp-h2">Belum ada posisi yang cocok?</h2>
+      <p>Kirim CV Anda untuk talent pool kami. Tim Human Capital akan menghubungi Anda jika ada posisi yang sesuai.</p>
       <form class="fm js-form" novalidate>
         <label class="fld"><span>Nama lengkap <i class="req">*</i></span><input type="text" name="nama" autocomplete="name" data-req="nama" aria-required="true"></label>
         <label class="fld"><span>Email <i class="req">*</i></span><input type="email" name="email" autocomplete="email" data-req="email" aria-required="true"></label>
@@ -1065,6 +1109,23 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     </div>
   </div>
 </section>
+<div class="jm" id="jm" role="dialog" aria-modal="true" aria-labelledby="jmTitle" aria-hidden="true">
+  <div class="jm-box">
+    <button class="jm-x" type="button" id="jmX" aria-label="Tutup"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="jm-pic" id="jmPic"><span class="jm-load">Memuat poster…</span><img id="jmImg" alt=""></div>
+    <div class="jm-info">
+      <div class="jm-nav"><button type="button" id="jmPrev" aria-label="Lowongan sebelumnya"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><span id="jmCount">1 / 1</span><button type="button" id="jmNext" aria-label="Lowongan berikutnya"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      <span class="job-div" id="jmDiv"></span>
+      <h3 id="jmTitle"></h3>
+      <div class="job-meta" id="jmMeta"></div>
+      <p class="jm-hint">Detail kualifikasi dan tanggung jawab ada di poster. Klik poster untuk memperbesar.</p>
+      <div class="jm-btns">
+        <a class="jm-li" id="jmLi" href="#" target="_blank" rel="noopener" aria-label="Lamar di LinkedIn"><span>Lamar di</span><img class="li-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/LinkedIn_2021.svg" alt="LinkedIn" onerror="this.outerHTML='<b class=li-txt>LinkedIn</b>'"></a>
+        <a class="jm-full" id="jmFull" href="#" target="_blank" rel="noopener">Buka poster ukuran penuh ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
 
 <footer class="footer">
@@ -1185,17 +1246,52 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     tr.addEventListener('click', function(e){ if (moved) { e.preventDefault(); moved = false; } }, true);
   });
 
-  // Klik lowongan -> isi posisi & scroll ke form
+  // Lowongan: klik kartu -> pratinjau poster HR; tombol LinkedIn langsung ke LinkedIn
   var fPos = document.getElementById('fPos'), fBid = document.getElementById('fBid'), card = document.querySelector('.cv-card');
-  [].forEach.call(document.querySelectorAll('.job[data-pos]'), function(a){
-    a.addEventListener('click', function(e){
-      if (e.defaultPrevented) return;
-      e.preventDefault();
-      fPos.value = a.dataset.pos; fBid.value = a.dataset.bid;
-      document.getElementById('lamar').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-      card.classList.add('flash'); setTimeout(function(){ card.classList.remove('flash'); }, 1600);
-      setTimeout(function(){ var n = document.querySelector('#lamar input[name=nama]'); if (n) n.focus({ preventScroll: true }); }, reduce ? 0 : 700);
-    });
+  var jm = document.getElementById('jm'), jmImg = document.getElementById('jmImg'), jmPic = document.getElementById('jmPic'), list = [], ji = 0, lastFocus = null;
+  function toForm(pos, bid){
+    fPos.value = pos; fBid.value = bid;
+    document.getElementById('lamar').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    card.classList.add('flash'); setTimeout(function(){ card.classList.remove('flash'); }, 1600);
+    setTimeout(function(){ var n = document.querySelector('#lamar input[name=nama]'); if (n) n.focus({ preventScroll: true }); }, reduce ? 0 : 700);
+  }
+  function fill(){
+    var j = list[ji], d = j.dataset;
+    document.getElementById('jmDiv').innerHTML = j.querySelector('.job-div').innerHTML;
+    document.getElementById('jmTitle').innerHTML = j.querySelector('h3').innerHTML;
+    document.getElementById('jmMeta').innerHTML = j.querySelector('.job-meta').innerHTML;
+    document.getElementById('jmLi').href = d.li; document.getElementById('jmFull').href = d.poster;
+    document.getElementById('jmCount').textContent = (ji + 1) + ' / ' + list.length;
+    document.getElementById('jmPrev').disabled = ji === 0; document.getElementById('jmNext').disabled = ji === list.length - 1;
+    jmPic.classList.remove('zoom'); jmPic.scrollTop = 0;
+    jmImg.style.visibility = 'hidden'; jmImg.alt = 'Poster lowongan ' + d.pos;
+    var ld = jmPic.querySelector('.jm-load'); ld.hidden = false;
+    jmImg.onload = function(){ jmImg.style.visibility = ''; ld.hidden = true; };
+    jmImg.onerror = function(){ jmPic.querySelector('.jm-load').textContent = 'Poster belum tersedia'; };
+    jmPic.querySelector('.jm-load').textContent = 'Memuat poster…';
+    jmImg.src = d.poster;
+  }
+  function openJob(j){
+    list = [].slice.call(j.closest('.jobs').querySelectorAll('.job')); ji = list.indexOf(j); lastFocus = j;
+    fill(); jm.classList.add('open'); jm.setAttribute('aria-hidden', 'false'); document.body.classList.add('jm-lock');
+    setTimeout(function(){ document.getElementById('jmX').focus(); }, 50);
+  }
+  function closeJob(){ jm.classList.remove('open'); jm.setAttribute('aria-hidden', 'true'); document.body.classList.remove('jm-lock'); if (lastFocus) lastFocus.focus({ preventScroll: true }); }
+  [].forEach.call(document.querySelectorAll('.job[data-pos]'), function(j){
+    j.addEventListener('click', function(e){ if (e.defaultPrevented || e.target.closest('.job-li')) return; openJob(j); });
+    j.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openJob(j); } });
+  });
+  document.getElementById('jmX').addEventListener('click', closeJob);
+  jm.addEventListener('click', function(e){ if (e.target === jm) closeJob(); });
+  document.getElementById('jmPrev').addEventListener('click', function(){ if (ji > 0) { ji--; fill(); } });
+  document.getElementById('jmNext').addEventListener('click', function(){ if (ji < list.length - 1) { ji++; fill(); } });
+  jmImg.addEventListener('click', function(){ jmPic.classList.toggle('zoom'); });
+  document.addEventListener('keydown', function(e){
+    if (!jm.classList.contains('open')) return;
+    if (e.key === 'Escape') closeJob();
+    if (e.key === 'ArrowRight' && ji < list.length - 1) { ji++; fill(); }
+    if (e.key === 'ArrowLeft' && ji > 0) { ji--; fill(); }
+    if (e.key === 'Tab') { var f = [].slice.call(jm.querySelectorAll('button:not(:disabled),a[href]')), i = f.indexOf(document.activeElement); if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); } }
   });
 
   // Form mockup
