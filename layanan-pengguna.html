@@ -90,6 +90,17 @@ button{font:inherit;color:inherit;cursor:pointer}
 .nav{display:flex;gap:2px;margin-left:auto}
 .nav a{padding:9px 12px;font-size:14.5px;font-weight:700;border-radius:999px;white-space:nowrap;transition:background .25s,color .25s}
 .nav a:hover,.nav a[aria-current]{background:rgba(255,255,255,.18)}
+.nav-dd{position:relative;display:flex;align-items:center}
+.nav-dd>a{padding-right:26px}
+.dd-car{position:absolute;right:10px;top:50%;margin-top:-6px;display:grid;place-items:center;pointer-events:none;transition:transform .3s var(--ease)}
+.nav-dd:hover .dd-car,.nav-dd:focus-within .dd-car{transform:rotate(180deg)}
+.dd-menu{position:absolute;left:50%;top:100%;min-width:270px;padding:8px;margin-top:10px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 48px -24px rgba(0,40,18,.45);display:grid;gap:2px;opacity:0;visibility:hidden;transform:translate(-50%,6px);transition:opacity .25s,transform .3s var(--ease),visibility .25s;z-index:20}
+.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.nav-dd:hover .dd-menu,.nav-dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.nav .dd-menu a{display:grid;gap:2px;padding:11px 14px;border-radius:12px;white-space:nowrap;color:var(--ink);background:transparent}
+.nav .dd-menu a b{font-size:14.5px;font-weight:800}
+.nav .dd-menu a small{font-size:12.5px;font-weight:600;color:var(--muted)}
+.nav .dd-menu a:hover,.nav .dd-menu a[aria-current]{background:var(--green-tint);color:var(--green-dark)}
 .header.scrolled .nav a:hover,.header.scrolled .nav a[aria-current]{background:var(--green-tint);color:var(--green-dark)}
 .pill .btn{height:44px;padding-inline:20px;flex:none}
 .burger{display:none;width:44px;height:44px;border-radius:50%;border:1.5px solid currentColor;background:transparent;margin-left:auto;place-items:center;opacity:.9}
@@ -100,6 +111,14 @@ button{font:inherit;color:inherit;cursor:pointer}
   .nav.open{display:flex}
   .nav a{padding:14px 6px;border-radius:0;border-bottom:1px solid var(--line)}
   .nav a:last-child{border-bottom:0}
+  .nav-dd{display:block}
+  .nav-dd>a{display:block;padding-right:6px;border-bottom:0!important}
+  .dd-car{display:none}
+  .dd-menu{position:static;min-width:0;margin:0 0 4px;padding:0 0 8px 14px;border:0;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;opacity:1;visibility:visible;transform:none;background:transparent}
+  .dd-menu::before{display:none}
+  .nav .dd-menu a{padding:8px 6px;border:0;border-left:2px solid var(--line);border-radius:0}
+  .nav .dd-menu a small{display:none}
+  .nav .dd-menu a:hover,.nav .dd-menu a[aria-current]{background:transparent;color:var(--green);border-left-color:var(--green)}
   .nav a:hover,.nav a[aria-current],.header.scrolled .nav a:hover,.header.scrolled .nav a[aria-current]{background:transparent;color:var(--green)}
 }
 
@@ -862,7 +881,13 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
     <nav class="nav" id="nav" aria-label="Menu utama">
       <a href="tentang-kami.html">Tentang Kami</a>
       <a href="layanan-pengguna.html" aria-current="page">Layanan Pengguna</a>
-      <a href="layanan-perusahaan.html">Layanan Perusahaan</a>
+      <div class="nav-dd">
+        <a href="layanan-perusahaan.html">Layanan Perusahaan</a><span class="dd-car" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+        <div class="dd-menu">
+          <a class="dd-main" href="layanan-perusahaan.html"><b>Produk dan Layanan</b><small>Solusi reward untuk korporat</small></a>
+          <a class="dd-sub" href="untuk-merchant.html"><b>Untuk Merchant</b><small>Jadi merchant partner Ultra Voucher</small></a>
+        </div>
+      </div>
       <a href="hubungan-investor.html">Hubungan Investor</a>
       <a href="karier.html">Karier</a>
       <a href="csr.html">CSR</a>
@@ -1004,6 +1029,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       <ul class="f-list">
         <li><a href="layanan-pengguna.html">Layanan Pengguna</a></li>
         <li><a href="layanan-perusahaan.html">Layanan Perusahaan</a></li>
+        <li><a href="untuk-merchant.html">Untuk Merchant</a></li>
         <li><a href="hubungi-kami.html">Hubungi Kami</a></li>
       </ul>
     </div>
