@@ -700,6 +700,22 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 .modal-close:hover{background:var(--green);color:var(--on-dark);transform:rotate(90deg)}
 /* tata kelola */
 .gov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:20px}
+.gov-more{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .6s var(--ease),opacity .45s,visibility .45s}
+.gov-more.open{grid-template-rows:1fr;opacity:1;visibility:visible}
+.gov-more-in{overflow:hidden;min-height:0}
+.gov a.is-open{box-shadow:0 0 0 2px var(--green)}
+.gov-org{margin-top:56px;scroll-margin-top:150px;border-radius:var(--r-lg);transition:box-shadow .6s,background .6s}
+.gov-org.flash{box-shadow:0 0 0 10px var(--green-tint),0 0 0 12px var(--green);background:var(--green-tint)}
+.gov-h{margin:0 0 18px;font-size:clamp(22px,2.2vw,28px);font-weight:800;color:var(--ink)}
+.mems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mem{display:grid;grid-template-columns:104px minmax(0,1fr);gap:18px;align-items:center;padding:12px;border-radius:var(--r-md);background:var(--bg);border:1px solid var(--line);transition:transform .45s var(--ease),box-shadow .45s,border-color .45s}
+.mem:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.mem .ph{width:104px;aspect-ratio:5/6;border-radius:12px;background-color:#e9efe9}
+.mem .ph>span{font-size:10px;padding:6px}
+.mem-b{display:grid;gap:5px;min-width:0}
+.mem-b i{font-style:normal;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.mem-b b{font-size:19px;font-weight:800;line-height:1.25;color:var(--ink)}
+.gov-x{margin-top:22px;border:0;background:none;padding:0;cursor:pointer;font:inherit;font-weight:800}
 .gov a{display:flex;flex-direction:column;background:var(--bg);border-radius:var(--r-md);overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s}
 .gov a:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .gov a:hover .ph-img{transform:scale(1.06)}
@@ -754,6 +770,10 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .tl-item:nth-of-type(even) .tl-card{order:0}
 }
 @media (max-width:620px){
+  .mems{grid-template-columns:minmax(0,1fr);gap:12px}
+  .mem{grid-template-columns:84px minmax(0,1fr);gap:14px}
+  .mem .ph{width:84px}
+  .mem-b b{font-size:17px}
   .stock .stock-range{display:none}
   .stock .stock-spark{height:52%}
   .rk-photo,.rk .facts{grid-column:1/-1}
@@ -958,7 +978,17 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       <section class="tpanel" id="p-tata-kelola">
         <h2>Tata Kelola Perusahaan</h2>
         <div class="card lead"><p>Dalam menjalankan bisnisnya, Ultra Voucher berupaya untuk selalu menerapkan prinsip-prinsip tata kelola perusahaan yang baik (Good Corporate Governance).</p></div>
-        <div class="gov"><a href="https://blog.ultravoucher.co.id/tentang-kami/tata-kelola-perusahaan/#sekretaris-perusahaan"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-1-fvdXBdhu.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Sekretaris &amp; Komite Perusahaan</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#rupst"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-2-BDy4Undc.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>RUPST &amp; RUPSLB</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#keterbukaan-informasi"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-3-peuFL9rO.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Keterbukaan Informasi</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a></div>
+        <div class="gov"><a href="#sekretaris-perusahaan"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-1-fvdXBdhu.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Sekretaris &amp; Komite Perusahaan</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#rupst"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-2-BDy4Undc.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>RUPST &amp; RUPSLB</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#keterbukaan-informasi"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-3-peuFL9rO.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Keterbukaan Informasi</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a></div>
+        <div class="gov-more" id="govMore"><div class="gov-more-in">
+        <div class="gov-org" id="sekretaris-perusahaan">
+          <h3 class="gov-h">Sekretaris Perusahaan</h3>
+          <div class="mems"><div class="mem" data-rv="up"><div class="ph mem-ph"><span>Foto</span><img class="ph-img" src="https://blog.ultravoucher.co.id/wp-content/uploads/2022/08/ayu_kusuma_trisyani.jpg" alt="" style="object-position:center top" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="mem-b"><i>Sekretaris Perusahaan</i><b>Ayu Kusuma Trisyani</b></div></div></div>
+        </div>
+        <div class="gov-org" id="komite-audit">
+          <h3 class="gov-h">Komite Audit &amp; Internal Audit</h3>
+          <div class="mems"><div class="mem" data-rv="up"><div class="ph mem-ph"><span>Foto</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/DANNY%20EUGENE-C4AzEKzm.png" alt="" style="object-position:center top" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="mem-b"><i>Ketua Komite Audit</i><b>Danny Eugene</b></div></div><div class="mem" data-rv="up"><div class="ph mem-ph"><span>Foto</span></div><div class="mem-b"><i>Anggota Komite Audit</i><b>Stevien Washington</b></div></div><div class="mem" data-rv="up"><div class="ph mem-ph"><span>Foto</span></div><div class="mem-b"><i>Anggota Komite Audit</i><b>Nurul Hidayah</b></div></div><div class="mem" data-rv="up"><div class="ph mem-ph"><span>Foto</span></div><div class="mem-b"><i>Kepala Internal Audit</i><b>Suheri</b></div></div></div>
+        </div>
+        </div></div>
       </section>
 
       <section class="tpanel" id="p-penghargaan">
@@ -1175,7 +1205,40 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   }
 
   tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.t, true); try { history.replaceState(null, '', '#' + t.dataset.t); } catch (e) {} }); });
-  if (location.hash) show(location.hash.slice(1), false); else { countAll(); arm(document.getElementById('p-ringkasan')); }
+  // Anchor ke bagian di dalam panel (mis. #sekretaris-perusahaan di Tata Kelola)
+  function goSection(id, smooth){
+    var el = document.getElementById(id); if (!el) return false;
+    var pn = el.closest('.tpanel'); if (!pn) return false;
+    show(pn.id.replace(/^p-/, ''), false);
+    setMore(true);
+    setTimeout(function(){
+      var top = el.getBoundingClientRect().top + (window.scrollY || 0) - 140;
+      window.scrollTo({ top: top, behavior: smooth && !reduce ? 'smooth' : 'auto' });
+      el.classList.add('flash'); setTimeout(function(){ el.classList.remove('flash'); }, 1600);
+    }, reduce ? 0 : 320);
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    return true;
+  }
+  var more = document.getElementById('govMore'), moreBtn = document.querySelector('.gov a[href="#sekretaris-perusahaan"]');
+  function setMore(on){
+    if (!more) return;
+    more.classList.toggle('open', on);
+    if (moreBtn) { moreBtn.classList.toggle('is-open', on); moreBtn.setAttribute('aria-expanded', on); var la = moreBtn.querySelector('.link-arrow'); if (la && la.firstChild) la.firstChild.nodeValue = on ? 'Sembunyikan ' : 'Detail '; }
+  }
+  if (moreBtn) { moreBtn.setAttribute('aria-controls', 'govMore'); moreBtn.setAttribute('aria-expanded', 'false'); }
+  [].forEach.call(document.querySelectorAll('.gov a[href^="#"]'), function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      if (a === moreBtn && more.classList.contains('open')) { setMore(false); try { history.replaceState(null, '', '#tata-kelola'); } catch (x) {} return; }
+      goSection(a.getAttribute('href').slice(1), true);
+    });
+  });
+  [].forEach.call(document.querySelectorAll('[data-go]'), function(b){
+    b.addEventListener('click', function(){ show(b.dataset.go, true); try { history.replaceState(null, '', '#' + b.dataset.go); } catch (e) {} });
+  });
+  var h0 = location.hash.slice(1);
+  if (h0 && document.getElementById(h0) && !document.getElementById('p-' + h0)) goSection(h0, false);
+  else if (h0) show(h0, false); else { countAll(); arm(document.getElementById('p-ringkasan')); }
 
   // Direksi / Dewan Komisaris
   var tg = [].slice.call(document.querySelectorAll('.toggle button'));
