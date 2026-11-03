@@ -597,28 +597,30 @@ main{overflow-x:clip}
 .misi-card p{position:relative;font-size:17.5px;font-weight:700;line-height:1.35;color:var(--ink);transition:color .45s}
 .misi-card:hover p{color:var(--on-dark)}
 /* jejak langkah */
-.tl{position:relative;display:grid;gap:36px;padding-block:12px}
-.tl::before,.tl-fill{content:"";position:absolute;left:50%;top:0;width:4px;margin-left:-2px;border-radius:4px}
-.tl::before{bottom:0;background:var(--line)}
-.tl-fill{height:var(--p,0px);background:var(--green);transition:height .25s linear}
-.tl-item{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:center}
-.tl-item::before{content:"";position:absolute;left:50%;top:50%;z-index:1;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:var(--surface);border:4px solid var(--line);transition:background .4s,border-color .4s,scale .5s var(--ease)}
-.tl-item.on::before{background:var(--amber-bright);border-color:var(--green);scale:1.2}
-.tl-item:nth-of-type(even) .tl-card{order:2}
-.tl-card{position:relative;overflow:hidden;background:var(--bg);border-radius:var(--r-md);padding:26px 28px;transition:transform .7s var(--ease),opacity .7s,box-shadow .4s}
-.tl-item .ph{aspect-ratio:4/3;border-radius:var(--r-md);transition:transform .7s var(--ease),opacity .7s}
-.tl.js .tl-item:not(.on) .tl-card,.tl.js .tl-item:not(.on) .ph{opacity:.4;transform:translateY(22px)}
-.tl-item:hover .tl-card{box-shadow:var(--shadow)}
-.tl-item:hover .ph-img{transform:scale(1.06)}
-.tl-ghost{position:absolute;right:-6px;top:-22px;font-size:104px;font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--green-tint);pointer-events:none}
+.tls{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 32px) / 3);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;cursor:grab;padding-bottom:28px;margin-bottom:-24px}
+.tls::-webkit-scrollbar{display:none}
+.tls.drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.tls.drag *{pointer-events:none}
+.tlc{scroll-snap-align:start;display:flex;flex-direction:column;min-width:0}
+.tlc-rail{position:relative;height:22px;margin-bottom:14px;display:flex;align-items:center}
+.tlc-rail::before{content:"";position:absolute;left:0;right:-16px;top:50%;height:2px;margin-top:-1px;background:var(--line)}
+.tlc:last-child .tlc-rail::before{right:0}
+.tlc-rail i{position:relative;z-index:1;width:18px;height:18px;border-radius:50%;background:var(--amber-bright);border:4px solid var(--green);box-shadow:0 0 0 5px var(--surface)}
+.tlc-card{flex:1;display:flex;flex-direction:column;background:var(--bg);border-radius:var(--r-md);overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s}
+.tlc-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.tlc .ph{aspect-ratio:4/3;border-radius:0}
+.tlc-card:hover .ph-img{transform:scale(1.06)}
+.tlc-b{position:relative;overflow:hidden;flex:1;padding:20px 22px 24px}
+.tlc-b .tl-ghost{position:absolute;right:-4px;top:4px;font-size:64px;font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--green-tint);pointer-events:none}
 .tl-year{position:relative;font-size:15px;font-weight:800;letter-spacing:.1em;color:var(--green)}
-.tl-card h3{position:relative;font-size:21px;font-weight:800;margin-block:8px 14px;max-width:18ch}
-.tl-card ul{position:relative;margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-.tl-card li{background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13.5px;font-weight:700;color:var(--text)}
-.tl-item.next{grid-template-columns:1fr}
-.tl-item.next::before{display:none}
-.tl-item.next .tl-card{background:var(--surface);border:2px dashed #cfd8d0;color:var(--faint);font-weight:700;text-align:center;opacity:1!important;transform:none!important}
-.tl-item.next .tl-year{color:var(--faint)}
+.tlc-b h3{position:relative;font-size:18px;font-weight:800;line-height:1.3;margin-block:6px 14px}
+.tlc-b ul{position:relative;margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.tlc-b li{background:var(--surface);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700;color:var(--text)}
+.sl-foot{display:flex;align-items:center;gap:20px;margin-top:22px}
+.sl-bar{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+.sl-bar i{display:block;height:100%;width:30%;border-radius:4px;background:var(--green);transition:transform .3s var(--ease),width .3s}
+.sl-nav{display:flex;gap:10px;flex:none}
+.sl-nav .round-btn:disabled{opacity:.35;cursor:default;transform:none}
 .org-scroll{overflow-x:auto;border-radius:var(--r-md)}
 .oc{--ln:#9cc9ad;position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;border-radius:var(--r-lg);padding:44px 28px 30px;background:var(--bg);border:1px solid var(--line);box-shadow:0 30px 60px -48px rgba(0,60,28,.45)}
 .oc-main{position:relative;z-index:2;display:flex;align-items:center;gap:14px;width:300px;padding:16px 20px;border-radius:20px;background:linear-gradient(135deg,var(--green-deep),#0b6a35);color:var(--on-dark);box-shadow:0 22px 34px -22px rgba(0,60,28,.8);transition:transform .4s var(--ease),box-shadow .4s}
@@ -638,16 +640,16 @@ main{overflow-x:clip}
 .ocn i{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--amber-pale);color:var(--amber-ink);transition:background .3s,color .3s}
 .ocn:hover i{background:var(--amber-bright);color:var(--ink)}
 .oc-side .ocn{margin-block:14px}
-.oc-div{position:relative;width:100%;margin-top:0;padding:40px 20px 22px;border:1.5px dashed #b9d8c4;border-radius:24px;background:rgba(238,251,243,.75)}
+.oc-div{position:relative;width:100%;margin-top:0;padding:40px 12px 14px;border:1.5px dashed #b9d8c4;border-radius:24px;background:rgba(238,251,243,.75)}
 .oc-div-tag{position:absolute;left:50%;top:0;translate:-50% -50%;display:inline-flex;align-items:center;height:34px;padding-inline:16px;border-radius:999px;background:var(--green-deep);color:var(--on-dark);font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.oc-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px}
-.ocd{grid-column:span 2;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:18px 16px;border-radius:16px;background:var(--bg);border:1px solid var(--line);transition:background .35s,transform .45s var(--ease),box-shadow .45s,border-color .35s}
-.ocd:nth-child(5){grid-column:2/span 2}
+.oc-grid{position:relative;display:grid;grid-template-columns:repeat(7,minmax(100px,1fr));gap:8px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
+.oc-grid::-webkit-scrollbar{display:none}
+.ocd{scroll-snap-align:start;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:16px 8px;border-radius:16px;background:var(--bg);border:1px solid var(--line);transition:background .35s,transform .45s var(--ease),box-shadow .45s,border-color .35s}
 .ocd:hover{background:var(--green-deep);border-color:var(--green-deep);transform:translateY(-5px);box-shadow:var(--shadow)}
 .ocd i{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--green-tint);color:var(--green-dark);transition:background .35s,color .35s,rotate .5s var(--ease)}
 .ocd:hover i{background:var(--amber-bright);color:var(--ink);rotate:-8deg}
-.ocd b{display:block;font-size:14.5px;font-weight:800;line-height:1.3;color:var(--ink);transition:color .35s}
-.ocd small{display:block;margin-top:3px;font-size:12.5px;line-height:1.4;color:var(--muted);transition:color .35s}
+.ocd b{display:block;font-size:13px;hyphens:auto;font-weight:800;line-height:1.3;color:var(--ink);transition:color .35s}
+.ocd small{display:block;margin-top:4px;font-size:11px;line-height:1.4;color:var(--muted);transition:color .35s}
 .ocd:hover b{color:var(--on-dark)}
 .ocd:hover small{color:var(--on-dark-sub)}
 /* animasi saat menu dibuka */
@@ -664,8 +666,8 @@ main{overflow-x:clip}
   .oc-side::after{left:25%;right:25%}
   .ocn{flex-direction:column;align-items:flex-start;font-size:13px;padding:12px}
   .oc-div{padding:34px 12px 14px}
-  .ocd,.ocd:nth-child(5){grid-column:span 4;gap:10px;padding:14px}
-  .ocd:nth-child(7){grid-column:3/span 4}
+  .oc-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:132px}
+  .ocd{padding:14px 10px}
 }
 @media (prefers-reduced-motion:reduce){.tpanel.is-active .oc *,.tpanel.is-active .oc-side::before,.tpanel.is-active .oc-side::after{animation:none!important}}
 .oc-note{align-self:flex-end;margin-top:22px;font-size:13.5px;font-weight:600;color:#2a5f38}
@@ -673,7 +675,7 @@ main{overflow-x:clip}
 .toggle{display:inline-flex;border:1.5px solid var(--green);border-radius:999px;padding:3px;background:var(--bg);margin-bottom:24px}
 .toggle button{height:42px;padding-inline:26px;border:0;border-radius:999px;background:transparent;font-weight:800;font-size:14.5px;color:var(--green-dark);transition:background .3s,color .3s}
 .toggle button[aria-pressed="true"]{background:var(--green);color:var(--on-dark)}
-.people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.people{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 40px) / 3);gap:20px}
 .people[hidden]{display:none}
 .person{position:relative;display:block;aspect-ratio:5/6;padding:0;border:0;border-radius:var(--r-md);overflow:hidden;background:#e9efe9;text-align:left;transition:transform .45s var(--ease),box-shadow .45s}
 .person:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
@@ -702,11 +704,23 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 .modal-close{position:absolute;right:14px;top:14px;z-index:2;width:42px;height:42px;border-radius:50%;border:0;background:var(--surface);color:var(--ink);display:grid;place-items:center;transition:background .25s,color .25s,transform .3s var(--ease)}
 .modal-close:hover{background:var(--green);color:var(--on-dark);transform:rotate(90deg)}
 /* tata kelola */
-.gov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:20px}
+.gov{margin-top:20px;padding:8px;border-radius:var(--r-lg);background:var(--bg);border:1px solid var(--line)}
+.gv{position:relative;display:flex;align-items:center;gap:22px;min-height:112px;padding:22px 20px;border-radius:18px;transition:background .25s}
+.gov>.gv~.gv::before{content:"";position:absolute;left:20px;right:20px;top:-1px;height:1px;background:var(--line)}
+.gv:hover,.gv.is-open{background:var(--surface)}
+.gv-ico{flex:none;width:66px;height:66px;border-radius:20px;display:grid;place-items:center;background:var(--green-tint);color:var(--green-dark);transition:background .3s,color .3s,rotate .45s var(--ease)}
+.gv:hover .gv-ico{background:var(--amber-bright);color:var(--ink);rotate:-6deg}
+.gv b{flex:1;min-width:0;font-size:20px;font-weight:800;line-height:1.3;color:var(--ink)}
+.gv-act{flex:none;display:inline-flex;align-items:center;gap:8px;height:44px;padding-inline:20px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);font-size:14px;font-weight:800;color:var(--ink);transition:background .25s,border-color .25s,color .25s}
+.gv:hover .gv-act{background:var(--green);border-color:var(--green);color:var(--on-dark)}
+.gv-act svg{transition:transform .35s var(--ease)}
+.gv.is-open .gv-act svg{transform:rotate(180deg)}
 .gov-more{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .6s var(--ease),opacity .45s,visibility .45s}
 .gov-more.open{grid-template-rows:1fr;opacity:1;visibility:visible}
 .gov-more-in{overflow:hidden;min-height:0}
-.gov a.is-open{box-shadow:0 0 0 2px var(--green)}
+.gov-pad{padding:12px 20px 30px}
+.gov-pad>.gov-org:first-child{margin-top:12px}
+.gov-pad>.gov-org+.gov-org{margin-top:44px}
 .gov-org{margin-top:56px;scroll-margin-top:150px;border-radius:var(--r-lg);transition:box-shadow .6s,background .6s}
 .gov-h{margin:0 0 18px;font-size:clamp(22px,2.2vw,28px);font-weight:800;color:var(--ink)}
 .koms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
@@ -726,16 +740,6 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 .mem-b{display:grid;gap:5px;min-width:0}
 .mem-b i{font-style:normal;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
 .mem-b b{font-size:19px;font-weight:800;line-height:1.25;color:var(--ink)}
-.gov-x{margin-top:22px;border:0;background:none;padding:0;cursor:pointer;font:inherit;font-weight:800}
-.gov a{display:flex;flex-direction:column;background:var(--bg);border-radius:var(--r-md);overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s}
-.gov a:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.gov a:hover .ph-img{transform:scale(1.06)}
-.gov .ph{aspect-ratio:16/10}
-.gov .ph.has-img{aspect-ratio:auto;display:block;padding:0}
-.gov .ph.has-img .ph-img{position:static;display:block;width:100%;height:auto}
-.gov a:hover .ph.has-img .ph-img{transform:scale(1.03)}
-.gov div.gov-b{padding:20px 20px 22px;display:grid;gap:12px}
-.gov b{font-size:17.5px;font-weight:800;color:var(--ink);line-height:1.3}
 /* penghargaan */
 .years{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:22px}
 .ysel{position:relative;display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 6px 0 18px;border-radius:999px;background:var(--bg);border:1.5px solid var(--line);box-shadow:0 10px 20px -16px rgba(0,60,28,.5);transition:border-color .25s}
@@ -768,19 +772,16 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .rk-text,.rk .stock,.rk-photo,.rk .facts{grid-column:1/-1}
   .misi-card,.misi-card:nth-child(n+4){grid-column:span 3}
   .misi-card:last-child{grid-column:1/-1}
-  .gov,.awards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .awards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ph-grid{grid-template-columns:1fr}
   .hero-ph{display:none}
   .rk-text,.rk .stock{grid-column:1/-1}
   .rk-photo{grid-column:span 2;min-height:0;aspect-ratio:1/1;align-self:center}
   .rk .facts{grid-column:span 4}
-  .tl{padding-left:34px;gap:26px}
-  .tl::before,.tl-fill{left:9px}
-  .tl-item{grid-template-columns:1fr;gap:12px}
-  .tl-item::before{left:-25px;top:34px}
-  .tl-item:nth-of-type(even) .tl-card{order:0}
+  .tls{grid-auto-columns:calc((100% - 16px) / 2)}
 }
 @media (max-width:620px){
+  .tls{grid-auto-columns:100%}
   .mems{grid-template-columns:minmax(0,1fr);gap:12px}
   .koms{grid-template-columns:minmax(0,1fr);gap:14px}
   .kom{display:block}
@@ -800,8 +801,18 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .visi-hero{padding:30px 24px 36px}
   .misi-card,.misi-card:nth-child(n+4){grid-column:1/-1}
   .stock{padding:22px}
-  .gov,.awards{grid-template-columns:1fr}
-  .people,#boc{grid-template-columns:1fr;gap:14px}
+  .awards{grid-template-columns:1fr}
+  .gv{gap:14px;min-height:88px;padding:16px 12px}
+  .gov>.gv~.gv::before{left:12px;right:12px}
+  .gv-ico{width:52px;height:52px;border-radius:16px}
+  .gv-ico svg{width:24px;height:24px}
+  .gv b{font-size:17px}
+  .gv-act{width:40px;height:40px;padding:0;justify-content:center}
+  .gv-act span{display:none}
+  .gov-pad{padding:8px 12px 22px}
+  .people{grid-auto-columns:78%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-20px;padding-inline:20px;scroll-padding-inline:20px}
+  .people::-webkit-scrollbar{display:none}
+  .person{scroll-snap-align:start}
   dialog.modal{border-radius:0}
   .modal-text{padding:24px}
 }
@@ -896,51 +907,21 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
 
       <section class="tpanel" id="p-jejak-langkah">
         <h2>Jejak Langkah Perseroan</h2>
-        <div class="tl" id="tl"><i class="tl-fill" aria-hidden="true"></i>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2016</span><div class="tl-year">2016</div><h3>Didirikan sebagai Produsen dan Distributor Voucher Konvensional</h3><ul><li>5 merchant</li><li>10 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2016</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2016-b8EZ-ELe.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2017</span><div class="tl-year">2017</div><h3>Beralih ke Bisnis Digital</h3><ul><li>50 merchant</li><li>50 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2017</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2017-CTBaPp2I.jpg" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2018</span><div class="tl-year">2018</div><h3>Meluncurkan Aplikasi Ultra Voucher, Marketplace Voucher Pertama di Indonesia</h3><ul><li>50.000 pengguna</li><li>140 merchant</li><li>150 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2018</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2018-Df6Rs2cF.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2019</span><div class="tl-year">2019</div><h3>Meluncurkan Ultra Voucher Gift Card (UVGC)</h3><ul><li>150.000 pengguna</li><li>250 merchant</li><li>200 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2019</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2019-BHQ8vW43.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2020</span><div class="tl-year">2020</div><h3>Menggandakan Transaksi selama Pandemi</h3><ul><li>190.000 pengguna</li><li>300 merchant</li><li>250 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2020</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2020-RRnnX3Ye.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2021</span><div class="tl-year">2021</div><h3>Bertahan di Masa Pandemi dan Resmi IPO di BEI</h3><ul><li>350.000 pengguna</li><li>400 merchant</li><li>300 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2021</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2021-Cq8c7f4_.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2022</span><div class="tl-year">2022</div><h3>Pendapatan Tertinggi dan Fokus ke Solusi Korporat</h3><ul><li>Pendapatan Rp1,2 triliun</li><li>500.000 pengguna</li><li>500 merchant</li><li>350 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2022</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2022-Bbm76uNw.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2023</span><div class="tl-year">2023</div><h3>600.000 Pengguna Aplikasi</h3><ul><li>600.000 pengguna</li><li>610 merchant</li><li>400 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2023</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2019-BHQ8vW43.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2024</span><div class="tl-year">2024</div><h3>Meluncurkan UVO, Maskot Ultra Voucher</h3><ul><li>Memperkuat identitas brand di mata publik</li><li>700.000 pengguna</li><li>720 merchant</li><li>450 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2024</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2020-RRnnX3Ye.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2025</span><div class="tl-year">2025</div><h3>Akselerasi Solusi B2B</h3><ul><li>UVGC sebagai gift card universal untuk belanja dan reward</li><li>800.000 pengguna</li><li>800 merchant</li><li>450 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2025</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2021-Cq8c7f4_.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
-        <article class="tl-item">
-          <div class="tl-card"><span class="tl-ghost" aria-hidden="true">2026</span><div class="tl-year">2026</div><h3>Meluncurkan UVGC 2.0</h3><ul><li>Bisa dipakai langsung di outlet merchant lewat EDC APOS</li><li>900.000 pengguna</li><li>1.000 merchant</li><li>700 corporate client</li></ul></div>
-          <div class="ph "><span>Slot foto 2026</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2022-Bbm76uNw.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
-        </article>
+        <div class="tls-wrap">
+          <div class="tls" id="tls">
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2016</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2016-b8EZ-ELe.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2016</span><div class="tl-year">2016</div><h3>Didirikan sebagai Produsen dan Distributor Voucher Konvensional</h3><ul><li>5 merchant</li><li>10 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2017</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2017-CTBaPp2I.jpg" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2017</span><div class="tl-year">2017</div><h3>Beralih ke Bisnis Digital</h3><ul><li>50 merchant</li><li>50 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2018</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2018-Df6Rs2cF.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2018</span><div class="tl-year">2018</div><h3>Meluncurkan Aplikasi Ultra Voucher, Marketplace Voucher Pertama di Indonesia</h3><ul><li>50.000 pengguna</li><li>140 merchant</li><li>150 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2019</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2019-BHQ8vW43.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2019</span><div class="tl-year">2019</div><h3>Meluncurkan Ultra Voucher Gift Card (UVGC)</h3><ul><li>150.000 pengguna</li><li>250 merchant</li><li>200 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2020</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2020-RRnnX3Ye.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2020</span><div class="tl-year">2020</div><h3>Menggandakan Transaksi selama Pandemi</h3><ul><li>190.000 pengguna</li><li>300 merchant</li><li>250 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2021</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2021-Cq8c7f4_.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2021</span><div class="tl-year">2021</div><h3>Bertahan di Masa Pandemi dan Resmi IPO di BEI</h3><ul><li>350.000 pengguna</li><li>400 merchant</li><li>300 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2022</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2022-Bbm76uNw.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2022</span><div class="tl-year">2022</div><h3>Pendapatan Tertinggi dan Fokus ke Solusi Korporat</h3><ul><li>Pendapatan Rp1,2 triliun</li><li>500.000 pengguna</li><li>500 merchant</li><li>350 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2023</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2019-BHQ8vW43.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2023</span><div class="tl-year">2023</div><h3>600.000 Pengguna Aplikasi</h3><ul><li>600.000 pengguna</li><li>610 merchant</li><li>400 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2024</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2020-RRnnX3Ye.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2024</span><div class="tl-year">2024</div><h3>Meluncurkan UVO, Maskot Ultra Voucher</h3><ul><li>Memperkuat identitas brand di mata publik</li><li>700.000 pengguna</li><li>720 merchant</li><li>450 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2025</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2021-Cq8c7f4_.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2025</span><div class="tl-year">2025</div><h3>Akselerasi Solusi B2B</h3><ul><li>UVGC sebagai gift card universal untuk belanja dan reward</li><li>800.000 pengguna</li><li>800 merchant</li><li>450 corporate client</li></ul></div></div></article>
+          <article class="tlc"><div class="tlc-rail"><i></i></div><div class="tlc-card"><div class="ph "><span>Slot foto 2026</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/2022-Bbm76uNw.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="tlc-b"><span class="tl-ghost" aria-hidden="true">2026</span><div class="tl-year">2026</div><h3>Meluncurkan UVGC 2.0</h3><ul><li>Bisa dipakai langsung di outlet merchant lewat EDC APOS</li><li>900.000 pengguna</li><li>1.000 merchant</li><li>700 corporate client</li></ul></div></div></article>
+          </div>
+          <div class="sl-foot"><div class="sl-bar"><i id="tlsBar"></i></div><div class="sl-nav"><button class="round-btn" type="button" id="tlsPrev" aria-label="Sebelumnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button class="round-btn" type="button" id="tlsNext" aria-label="Berikutnya"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
         </div>
       </section>
 
@@ -994,8 +975,8 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       <section class="tpanel" id="p-tata-kelola">
         <h2>Tata Kelola Perusahaan</h2>
         <div class="card lead"><p>Dalam menjalankan bisnisnya, Ultra Voucher berupaya untuk selalu menerapkan prinsip-prinsip tata kelola perusahaan yang baik (Good Corporate Governance).</p></div>
-        <div class="gov"><a href="#sekretaris-perusahaan"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-1-fvdXBdhu.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Sekretaris &amp; Komite Perusahaan</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#rupst"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-2-BDy4Undc.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>RUPST &amp; RUPSLB</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a><a href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#keterbukaan-informasi"><div class="ph "><span>Slot gambar</span><img class="ph-img" src="https://company.ultravoucher.co.id/assets/tentang-kami-tata-kelola-3-peuFL9rO.png" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="gov-b"><b>Keterbukaan Informasi</b><span class="link-arrow">Detail <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div></a></div>
-        <div class="gov-more" id="govMore"><div class="gov-more-in">
+        <div class="gov"><a class="gv" href="#sekretaris-perusahaan"><span class="gv-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 016-6h2a6 6 0 016 6v1"/><path d="M16 11l2 2 4-4"/></svg></span><b>Sekretaris Perusahaan</b><span class="gv-act"><span>Detail</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></a>
+        <div class="gov-more" id="govMore"><div class="gov-more-in"><div class="gov-pad">
         <div class="gov-org" id="sekretaris-perusahaan">
           <h3 class="gov-h">Sekretaris Perusahaan</h3>
           <div class="mems"><div class="mem" data-rv="up"><div class="ph mem-ph"><span>Foto</span><img class="ph-img" src="https://blog.ultravoucher.co.id/wp-content/uploads/2022/08/ayu_kusuma_trisyani.jpg" alt="" style="object-position:center top" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div><div class="mem-b"><b>Ayu Kusuma Trisyani</b></div></div></div>
@@ -1004,7 +985,8 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
           <h3 class="gov-h">Komite Perusahaan</h3>
           <div class="koms"><div class="gov-org kom" id="komite-audit" data-rv="up"><h4 class="kom-h">Komite Audit</h4><ul><li><i>Ketua</i><b>Danny Eugene D.</b></li><li><i>Anggota</i><b>Nurul Hidayah</b></li><li><i>Anggota</i><b>Stevien Washington</b></li></ul></div><div class="gov-org kom" id="komite-nominasi-remunerasi" data-rv="up"><h4 class="kom-h">Komite Nominasi dan Remunerasi</h4><ul><li><i>Ketua</i><b>Danny Eugene D.</b></li><li><i>Anggota</i><b>Rangga Ananta</b></li><li><i>Anggota</i><b>Fajar Danisworo</b></li></ul></div></div>
         </div>
-        </div></div>
+        </div></div></div><a class="gv" href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#rupst"><span class="gv-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span><b>RUPST &amp; RUPSLB</b><span class="gv-act"><span>Lihat</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a><a class="gv" href="https://uv-seo.github.io/company-website-preview/hubungan-investor.html#keterbukaan-informasi"><span class="gv-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg></span><b>Keterbukaan Informasi</b><span class="gv-act"><span>Lihat</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+        </div>
       </section>
 
       <section class="tpanel" id="p-penghargaan">
@@ -1113,7 +1095,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       if (p) p.classList.toggle('is-active', on);
     });
     if (!hit) return show('ringkasan', false);
-    moveInd(); tlUpdate(); if (id === 'ringkasan') countAll();
+    moveInd(); if (id === 'ringkasan') countAll();
     arm(document.getElementById('p-' + id));
     if (scroll) {
       var top = document.querySelector('.page-body').getBoundingClientRect().top + (window.scrollY || 0) - 76;
@@ -1122,16 +1104,26 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   }
   function moveInd(){}
 
-  // Linimasa: garis terisi dan titik menyala seiring di-scroll
-  var tl = document.getElementById('tl'), tlItems = [].slice.call(tl.querySelectorAll('.tl-item:not(.next)'));
-  function tlUpdate(){
-    if (!tl.offsetParent) return;
-    var r = tl.getBoundingClientRect(), fill = reduce ? r.height : Math.max(0, Math.min(r.height, window.innerHeight * 0.62 - r.top));
-    tl.style.setProperty('--p', fill + 'px');
-    tlItems.forEach(function(it){ it.classList.toggle('on', it.offsetTop + it.offsetHeight / 2 <= fill + 2); });
+  // Slider horizontal (Jejak Langkah): panah, progress bar, drag mouse
+  function slider(tr, pv, nx, bar){
+    if (!tr) return;
+    var step = function(){ var c = tr.firstElementChild; return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(tr).columnGap || 16) : 300; };
+    var upd = function(){
+      var max = tr.scrollWidth - tr.clientWidth;
+      if (pv) pv.disabled = tr.scrollLeft <= 2; if (nx) nx.disabled = tr.scrollLeft >= max - 2;
+      if (bar && tr.scrollWidth) { var vis = tr.clientWidth / tr.scrollWidth; bar.style.width = (vis * 100) + '%'; bar.style.transform = 'translateX(' + (max > 0 ? tr.scrollLeft / max * (1 / vis - 1) * 100 : 0) + '%)'; }
+    };
+    if (pv) pv.addEventListener('click', function(){ tr.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    if (nx) nx.addEventListener('click', function(){ tr.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    tr.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd);
+    if (window.ResizeObserver) new ResizeObserver(upd).observe(tr); upd();
+    var d = false, sx = 0, sl = 0, mv = false;
+    tr.addEventListener('pointerdown', function(e){ if (e.pointerType !== 'mouse') return; d = true; mv = false; sx = e.clientX; sl = tr.scrollLeft; });
+    window.addEventListener('pointermove', function(e){ if (!d) return; var dx = e.clientX - sx; if (Math.abs(dx) > 5) { mv = true; tr.classList.add('drag'); } if (mv) tr.scrollLeft = sl - dx; });
+    window.addEventListener('pointerup', function(){ if (!d) return; d = false; if (mv) { tr.classList.remove('drag'); var st = step(); tr.scrollTo({ left: Math.round(tr.scrollLeft / st) * st, behavior: 'smooth' }); } });
+    tr.addEventListener('dragstart', function(e){ e.preventDefault(); });
   }
-  tl.classList.add('js');
-  window.addEventListener('scroll', tlUpdate, { passive: true }); window.addEventListener('resize', tlUpdate);
+  slider(document.getElementById('tls'), document.getElementById('tlsPrev'), document.getElementById('tlsNext'), document.getElementById('tlsBar'));
 
   // Angka menghitung naik saat Ringkasan tampil
   var fmt = new Intl.NumberFormat('id-ID');
@@ -1205,8 +1197,8 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
       setTimeout(function(){ t.classList.remove('rv', 'rv-up', 'rv-zoom', 'rv-right', 'in'); t.style.transitionDelay = ''; }, 1300 + (parseFloat(t.style.transitionDelay) || 0));
     });
   }, { rootMargin: '0px 0px -8% 0px' }) : null;
-  var RV = [[':scope > h2', 'up'], [':scope > .card, :scope > .visi-hero, :scope > .misi-h, :scope > .toggle, :scope > .years, :scope > .org-scroll', 'up'],
-            ['.rk > *', 'zoom'], ['.misi-grid > *', 'zoom'], ['.people > *', 'zoom'], ['.gov > *', 'zoom']];
+  var RV = [[':scope > h2', 'up'], [':scope > .card, :scope > .visi-hero, :scope > .misi-h, :scope > .toggle, :scope > .years, :scope > .org-scroll, :scope > .tls-wrap', 'up'],
+            ['.rk > *', 'zoom'], ['.misi-grid > *', 'zoom'], ['.people > *', 'zoom'], ['.gov > .gv', 'up']];
   function arm(panel){
     if (!io || !panel) return;
     RV.forEach(function(g){
@@ -1238,7 +1230,7 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   function setMore(on){
     if (!more) return;
     more.classList.toggle('open', on);
-    if (moreBtn) { moreBtn.classList.toggle('is-open', on); moreBtn.setAttribute('aria-expanded', on); var la = moreBtn.querySelector('.link-arrow'); if (la && la.firstChild) la.firstChild.nodeValue = on ? 'Sembunyikan ' : 'Detail '; }
+    if (moreBtn) { moreBtn.classList.toggle('is-open', on); moreBtn.setAttribute('aria-expanded', on); var la = moreBtn.querySelector('.gv-act span'); if (la) la.textContent = on ? 'Tutup' : 'Detail'; }
   }
   if (moreBtn) { moreBtn.setAttribute('aria-controls', 'govMore'); moreBtn.setAttribute('aria-expanded', 'false'); }
   [].forEach.call(document.querySelectorAll('.gov a[href^="#"]'), function(a){
