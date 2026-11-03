@@ -525,9 +525,7 @@ main{overflow-x:clip}
 .rk{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
 .rk-text{grid-column:span 4}
 .rk .stock{grid-column:span 2}
-.rk-photo{grid-column:span 2;border-radius:var(--r-md);min-height:200px}
-.rk-photo:hover .ph-img{transform:scale(1.05)}
-.rk .facts{grid-column:span 4}
+.rk .facts{grid-column:1/-1;grid-template-columns:repeat(4,minmax(0,1fr))}
 .rk-video{grid-column:1/-1;position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:var(--ink);box-shadow:0 30px 50px -36px rgba(0,60,28,.6)}
 .rk-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .card h3{font-size:22px;font-weight:800;margin-bottom:12px}
@@ -769,15 +767,13 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .side button{padding:10px 16px;border-radius:999px;font-size:14.5px}
   .side-ind{border-radius:999px}
   .side button:hover{padding-left:16px}
-  .rk-text,.rk .stock,.rk-photo,.rk .facts{grid-column:1/-1}
+  .rk-text,.rk .stock,.rk .facts{grid-column:1/-1}
   .misi-card,.misi-card:nth-child(n+4){grid-column:span 3}
   .misi-card:last-child{grid-column:1/-1}
   .awards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ph-grid{grid-template-columns:1fr}
   .hero-ph{display:none}
   .rk-text,.rk .stock{grid-column:1/-1}
-  .rk-photo{grid-column:span 2;min-height:0;aspect-ratio:1/1;align-self:center}
-  .rk .facts{grid-column:span 4}
   .tls{grid-auto-columns:calc((100% - 16px) / 2)}
 }
 @media (max-width:620px){
@@ -793,8 +789,8 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
   .mem-b b{font-size:17px}
   .stock .stock-range{display:none}
   .stock .stock-spark{height:52%}
-  .rk-photo,.rk .facts{grid-column:1/-1}
-  .rk-photo{width:100%;aspect-ratio:1/1}
+  .rk .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rk-text{order:1}.rk .facts{order:2}.rk .stock{order:3}.rk-video{order:4}
   .page-hero{padding-block:128px 52px}
   .page-body{padding-block:28px 72px}
   .card{padding:22px}
@@ -881,7 +877,6 @@ dialog.modal[open]{animation:drawer .55s var(--ease)}
               <div class="stock-meta"><span>Pembaruan terakhir</span><b id="stkTime">07/10/2026 10:42:04 WIB</b></div>
             </div>
           </div>
-          <div class="ph rk-photo"><span>Slot foto kantor atau tim · 640 × 640</span><img class="ph-img" src="https://play-lh.googleusercontent.com/xpjLIijHjgsOremD9tTEmk6VF73R-4nrt8y4UCSLysdKIQed2RboRMu-ythlXQdddwujjlR5K78Sk0-cwboARw" alt="" onload="if(this.parentNode)this.parentNode.classList.add('has-img')" onerror="this.hidden=true"></div>
           <div class="facts">
             <div class="fact"><b>2016</b><span>tahun berdiri</span></div>
             <div class="fact"><b>2021</b><span>tercatat di BEI</span></div>
